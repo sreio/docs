@@ -38,7 +38,7 @@
       repo: 'gitalk',
       owner: 'sreio',
       admin: ['sreio'],
-      id: location.href.split("/").pop(),
+      id: decodeURI(location.href.split("/").pop()),
       // facebook-like distraction free mode
       distractionFreeMode: false
     })
