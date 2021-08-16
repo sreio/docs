@@ -1,4 +1,4 @@
-name: Jekyll site CI
+name: docs  CI
 
 on:
   push:
@@ -8,10 +8,13 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@main
-    - name: Update this Site
-      run: |
-        cd /dnmp/www/docs \
-        git pull
+      - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd /dnmp/www/docs & git pull
