@@ -10,11 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Deploy
-      uses: actions/checkout@master
+      uses: actions/checkout@v2
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
-        script: |
-          cd /dnmp/www/docs & git pull
+	token: ${{ sercrets.TOKEN }}
+	path: '/dnmp/www/docs'
