@@ -1,0 +1,19 @@
+name: Jekyll site CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: docs/master
+    - name: Update this Site
+      run: |
+        cd /dnmp/www/docs \
+        git pull
