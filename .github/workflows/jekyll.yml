@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: docs/master
+    - uses: actions/checkout@main
     - name: Update this Site
       run: |
         cd /dnmp/www/docs \
