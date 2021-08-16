@@ -15,7 +15,7 @@ jobs:
         switches: -avzh
         # path: public/
         remote_path: /dnmp/www/docs
-        remote_host: docs.sreio.com
+        remote_host: 81.70.245.26
         remote_port: 22
         remote_user: root
         remote_key: ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
