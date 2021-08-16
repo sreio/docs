@@ -6,13 +6,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy
+    - name: docs CI
       uses: actions/checkout@v2
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        port: ${{ secrets.PORT }}
