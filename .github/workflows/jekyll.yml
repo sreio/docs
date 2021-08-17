@@ -13,7 +13,7 @@ jobs:
       with:
         # 这里是 rsync 的参数 switches: -avzh --delete --exclude="" --include="" --filter=""
         switches: -avzh
-        # path: public/
+        path: docs/
         remote_path: /dnmp/www/docs/
         remote_host: ${{ secrets.HOST }}
         remote_port: 22
