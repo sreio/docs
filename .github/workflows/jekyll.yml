@@ -18,7 +18,6 @@ jobs:
             USER: ${{ secrets.USERNAME }}
             PASSWORD: ${{ secrets.PASSWORD }}
             PATH: ${{ secrets.PATH }}
-      - name: Run a multi-line script
         run: |
           echo $PUB_KEY >> ~/ .ssh/authorized_key 
           ssh -p $PORT $USER@$HOST -o stricthostkeychecking=no
