@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
     - name: rsync deployments
@@ -14,7 +14,7 @@ jobs:
       with:
         # 这里是 rsync 的参数 switches: -avzh --delete --exclude="" --include="" --filter=""
         switches: -avzr --delete
-        path: src/
+        # path: src/
         remote_path: ${{ secrets.PATH }}
         remote_host: ${{ secrets.HOST }}
         remote_port: ${{ secrets.PORT }}
