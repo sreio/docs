@@ -12,8 +12,8 @@ jobs:
       uses: burnett01/rsync-deployments@4.1
       with:
         # 这里是 rsync 的参数 switches: -avzh --delete --exclude="" --include="" --filter=""
-        switches: -avzh
-        path: docs/
+        switches: -avzr --delete --exclude="" --include="" --filter=""
+        # path: docs/
         remote_path: /dnmp/www/docs/
         remote_host: ${{ secrets.HOST }}
         remote_port: 22
