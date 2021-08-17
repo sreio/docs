@@ -8,18 +8,32 @@ jobs:
   build:
     name: update Docs
     runs-on: ubuntu-latest
+
     steps:
-      - name: checkout
-        uses: actions/checkout@master
-      - name: deploy docs
-        uses: hengkx/ssh-deploy@v1.0.1
-        with:
-          USERNAME: ${{ secrets.USERNAME }} # 为了用户信息安全对敏感数据可以在secrets中配置请看下图
-          PASSWORD: ${{ secrets.PASSWORD }}
-          HOST: ${{ secrets.HOST }}
-          SOURCE: './'
-          TARGET: '/dnmp/www/docs'
-          AFTER_COMMAND: 'git pull'
+    - uses: actions/checkout@v2
+    - name: Deploy to Server
+      uses: easingthemes/ssh-deploy@main
+      env:
+          SSH_PRIVATE_KEY: ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
+          ARGS: "-avzr --delete"
+          # SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.HOST }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.PATH }}
+          # EXCLUDE: "/dist/, /node_modules/"
+
+    # steps:
+    #   - name: checkout
+    #     uses: actions/checkout@main
+    #   - name: deploy docs
+    #     uses: hengkx/ssh-deploy@v1.0.1
+    #     with:
+    #       USERNAME: ${{ secrets.USERNAME }} # 为了用户信息安全对敏感数据可以在secrets中配置请看下图
+    #       PASSWORD: ${{ secrets.PASSWORD }}
+    #       HOST: ${{ secrets.HOST }}
+    #       SOURCE: './'
+    #       TARGET: '/dnmp/www/docs'
+    #       AFTER_COMMAND: 'git pull'
 
   # build:
   #   runs-on: ubuntu-18.04
