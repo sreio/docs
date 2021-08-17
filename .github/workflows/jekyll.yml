@@ -8,15 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: docs CI
-      uses: burnett01/rsync-deployments@4.1
+    - uses: actions/checkout@v2
+    - name: rsync deployments
+      uses: burnett01/rsync-deployments@5.1
       with:
         # 这里是 rsync 的参数 switches: -avzh --delete --exclude="" --include="" --filter=""
-        switches: -avzr --delete --exclude="" --include="" --filter=""
+        switches: -avzr --delete
         # path: docs/
-        remote_path: /dnmp/www/docs/
+        remote_path: ${{ secrets.PATH }}
         remote_host: ${{ secrets.HOST }}
-        remote_port: 22
+        remote_port: ${{ secrets.PORT }}
         remote_user: ${{ secrets.USERNAME }}
-        remote_key: ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
+        remote_key:  ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
 
