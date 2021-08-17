@@ -5,19 +5,29 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    runs-on: ubuntu-18.04
+  pull-request:
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: rsync deployments
-      uses: burnett01/rsync-deployments@5.1
+    - name: pull-request
+      uses: repo-sync/pull-request@v2
       with:
-        # 这里是 rsync 的参数 switches: -avzh --delete --exclude="" --include="" --filter=""
-        switches: -avzr --delete
-        # path: src/
-        remote_path: ${{ secrets.PATH }}
-        remote_host: ${{ secrets.HOST }}
-        remote_port: ${{ secrets.PORT }}
-        remote_user: ${{ secrets.USERNAME }}
-        remote_key:  ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
+        destination_branch: "main"
+        github_token: ${{ secrets.TOKEN }}
+
+  # build:
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: rsync deployments
+  #     uses: burnett01/rsync-deployments@5.1
+  #     with:
+  #       # 这里是 rsync 的参数 switches: -avzh --delete --exclude="" --include="" --filter=""
+  #       switches: -avzr --delete
+  #       # path: src/
+  #       remote_path: ${{ secrets.PATH }}
+  #       remote_host: ${{ secrets.HOST }}
+  #       remote_port: ${{ secrets.PORT }}
+  #       remote_user: ${{ secrets.USERNAME }}
+  #       remote_key:  ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
 
