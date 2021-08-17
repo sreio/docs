@@ -27,7 +27,7 @@ jobs:
     steps:
     - uses: actions/checkout@main
     - name: rsync deployments
-      uses: burnett01/rsync-deployments@5.1
+    - uses: burnett01/rsync-deployments@5.1
       with:
         # 这里是 rsync 的参数 switches: -avzh --delete --exclude="" --include="" --filter=""
         switches: -avzr
