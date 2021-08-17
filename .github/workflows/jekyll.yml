@@ -21,6 +21,7 @@ jobs:
           user: ${{ secrets.USERNAME }}
           pass: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
+          key:  ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
           connect_timeout: 10s
           script: |
             cd /dnmp/www/docs && git pull
