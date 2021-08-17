@@ -4,3 +4,4 @@
     * [Go基础](/golang/go基础/内置变量类型和函数.md)
       * [内置变量类型和函数](/golang/go基础/内置变量类型和函数.md)
       * [Init函数和main函数](/golang/go基础/Init函数和main函数.md)
+      * [命令](/golang/go基础/命令.md)
