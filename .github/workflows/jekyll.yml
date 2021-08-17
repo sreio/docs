@@ -5,36 +5,36 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-    name: update Docs
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: checkout
-        uses: actions/checkout@main
-      - name: deploy docs 
-        uses: hengkx/ssh-deploy@v1.0.1
-        with:
-          USERNAME: ${{ secrets.USERNAME }} # 为了用户信息安全对敏感数据可以在secrets中配置请看下图
-          PASSWORD: ${{ secrets.PASSWORD }}
-          HOST: ${{ secrets.HOST }}
-          SOURCE: './'
-          TARGET: '/dnmp/www/docs'
-          AFTER_COMMAND: 'git pull'
-
   # build:
-  #   runs-on: ubuntu-18.04
+  #   name: update Docs
+  #   runs-on: ubuntu-latest
+
   #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: rsync deployments
-  #     uses: burnett01/rsync-deployments@5.1
-  #     with:
-  #       # 这里是 rsync 的参数 switches: -avzh --delete --exclude="" --include="" --filter=""
-  #       switches: -avzr --delete
-  #       # path: src/
-  #       remote_path: ${{ secrets.PATH }}
-  #       remote_host: ${{ secrets.HOST }}
-  #       remote_port: ${{ secrets.PORT }}
-  #       remote_user: ${{ secrets.USERNAME }}
-  #       remote_key:  ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
+  #     - name: checkout
+  #       uses: actions/checkout@main
+  #     - name: deploy docs 
+  #       uses: hengkx/ssh-deploy@v1.0.1
+  #       with:
+  #         USERNAME: ${{ secrets.USERNAME }} # 为了用户信息安全对敏感数据可以在secrets中配置请看下图
+  #         PASSWORD: ${{ secrets.PASSWORD }}
+  #         HOST: ${{ secrets.HOST }}
+  #         SOURCE: './'
+  #         TARGET: '/dnmp/www/docs'
+  #         AFTER_COMMAND: 'git pull'
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+    - name: rsync deployments
+      uses: burnett01/rsync-deployments@5.1
+      with:
+        # 这里是 rsync 的参数 switches: -avzh --delete --exclude="" --include="" --filter=""
+        switches: -avzr
+        # path: src/
+        remote_path: ${{ secrets.PATH }}
+        remote_host: ${{ secrets.HOST }}
+        remote_port: ${{ secrets.PORT }}
+        remote_user: ${{ secrets.USERNAME }}
+        remote_key:  ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
 
