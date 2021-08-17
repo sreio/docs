@@ -19,7 +19,7 @@ jobs:
             PASSWORD: ${{ secrets.PASSWORD }}
             PATH: ${{ secrets.PATH }}
         run: |
-          echo $PUB_KEY >> ~/ .ssh/authorized_key 
+          echo $PUB_KEY >> ~/.ssh/authorized_key 
           ssh -p $PORT $USER@$HOST -o stricthostkeychecking=no
           cd /dnmp/www/docs && git pull
     # steps:
