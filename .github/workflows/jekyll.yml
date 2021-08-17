@@ -10,29 +10,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Deploy to Server
-        env:
-            HOST: ${{ secrets.HOST }}
-            PORT: ${{ secrets.PORT }}
-            USER: ${{ secrets.USERNAME }}
-            PASSWORD: ${{ secrets.PASSWORD }}
-            PATH: ${{ secrets.PATH }}
-        run: |
-          ssh -p $PORT $USER@$HOST -o stricthostkeychecking=no
-          cd /dnmp/www/docs && git pull
-    # steps:
-    #   - name: checkout
-    #     uses: actions/checkout@main
-    #   - name: deploy docs 
-    #     uses: hengkx/ssh-deploy@v1.0.1
-    #     with:
-    #       USERNAME: ${{ secrets.USERNAME }} # 为了用户信息安全对敏感数据可以在secrets中配置请看下图
-    #       PASSWORD: ${{ secrets.PASSWORD }}
-    #       HOST: ${{ secrets.HOST }}
-    #       SOURCE: './'
-    #       TARGET: '/dnmp/www/docs'
-    #       AFTER_COMMAND: 'git pull'
+      - name: checkout
+        uses: actions/checkout@main
+      - name: deploy docs 
+        uses: hengkx/ssh-deploy@v1.0.1
+        with:
+          USERNAME: ${{ secrets.USERNAME }} # 为了用户信息安全对敏感数据可以在secrets中配置请看下图
+          PASSWORD: ${{ secrets.PASSWORD }}
+          HOST: ${{ secrets.HOST }}
+          SOURCE: './'
+          TARGET: '/dnmp/www/docs'
+          AFTER_COMMAND: 'git pull'
 
   # build:
   #   runs-on: ubuntu-18.04
