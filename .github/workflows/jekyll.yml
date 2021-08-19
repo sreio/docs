@@ -10,6 +10,7 @@ jobs:
     steps:
       - name: Checkout
       - uses: actions/checkout@main
+        run: echo sreio
       - name: update server docs
         uses: wlixcc/SFTP-Deploy-Action@v1.0
         with:
