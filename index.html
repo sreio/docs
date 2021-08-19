@@ -55,9 +55,16 @@
           words: "",
           minute: ""
         },
-        isExpected: true,
-        
-      }
+        isExpected: true,       
+      },
+      // top
+      scrollToTop: {
+        auto: true,
+        text: 'Top',
+        right: 15,
+        bottom: 15,
+        offset: 500
+      },
     }
   </script>
   <!-- Docsify v4 -->
@@ -82,7 +89,9 @@
   <script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
   <!-- 折叠目录 -->
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
-  
+  <!-- 页面滚动回顶部的插件 -->
+  <script src="//unpkg.com/docsify-scroll-to-top/dist/docsify-scroll-to-top.min.js"></script>
+
   <!-- gitalk -->
   <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
