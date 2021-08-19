@@ -1,9 +1,9 @@
-* [首页](/)
-  * [PHP](/php/README.md)
-  * [Golang](/golang/README.md)
-    * [Go基础](/golang/go基础/)
-      * [内置变量类型和函数](/golang/go基础/内置变量类型和函数.md)
-      * [Init函数和main函数](/golang/go基础/Init函数和main函数.md)
-      * [命令](/golang/go基础/命令.md)
-      * [运算符](/golang/go基础/运算符.md)
-      * [下划线](/golang/go基础/下划线.md)
+- [首页](/)
+  - PHP
+  - Golang
+    - Go基础
+      - [内置变量类型和函数](/golang/go基础/内置变量类型和函数.md)
+      - [Init函数和main函数](/golang/go基础/Init函数和main函数.md)
+      - [命令](/golang/go基础/命令.md)
+      - [运算符](/golang/go基础/运算符.md)
+      - [下划线](/golang/go基础/下划线.md)
