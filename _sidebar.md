@@ -6,5 +6,6 @@
       - [Init函数和main函数](/golang/go基础/Init函数和main函数.md)
       - [运算符](/golang/go基础/运算符.md)
       - [下划线](/golang/go基础/下划线.md)
+      - [基本类型](/golang/go基础/基本类型.md)
       - [内置变量类型和函数](/golang/go基础/内置变量类型和函数.md)
       - [变量和常量使用](/golang/go基础/变量和常量.md)
