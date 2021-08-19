@@ -8,16 +8,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     name: update docs
+
     steps:
-      - name: Checkout
-      - uses: actions/checkout@main
+    - name: Checkout
+      uses: actions/checkout@main
+
         run: echo sreio
-      - name: update server docs
-        uses: wlixcc/SFTP-Deploy-Action@v1.0
-        with:
-          username: ${{ secrets.USERNAME }}
-          server: ${{ secrets.HOST }}
-          ssh_private_key: ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
-          # local_path: './*'
-          remote_path: ${{ secrets.PATH }}
+    - name: update server docs
+      uses: wlixcc/SFTP-Deploy-Action@v1.0
+      with:
+        username: ${{ secrets.USERNAME }}
+        server: ${{ secrets.HOST }}
+        ssh_private_key: ${{ secrets.MY_UBUNTU_RSA_PRIVATE_KEY }}
+        # local_path: './*'
+        remote_path: ${{ secrets.PATH }}
 
