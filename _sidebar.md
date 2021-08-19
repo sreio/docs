@@ -7,3 +7,4 @@
       - [命令](/golang/go基础/命令.md)
       - [运算符](/golang/go基础/运算符.md)
       - [下划线](/golang/go基础/下划线.md)
+      - [变量和常量](/golang/go基础/变量和常量.md)
