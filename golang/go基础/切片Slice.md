@@ -385,7 +385,7 @@ import (
 func main() {
 
     data := [...]int{0, 1, 2, 3, 4, 10: 0}
-    s := data[:2:3]
+    s := data[:2]
 
     s = append(s, 100, 200) // 一次 append 两个值，超出 s.cap 限制。
 
