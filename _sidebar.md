@@ -17,4 +17,5 @@
       - [切片Slice](/golang/go基础/切片Slice.md)
       - [指针](/golang/go基础/指针.md)
       - [MAP](/golang/go基础/map.md)
+      - [结构体](/golang/go基础/结构体.md)
     - [Go框架](/golang/Go框架/README.md)
