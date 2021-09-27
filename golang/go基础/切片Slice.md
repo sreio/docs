@@ -680,3 +680,41 @@ func main() {
 ```go
 strings.Replace(strings.Trim(fmt.Sprint(array_or_slice), "[]"), " ", ",", -1)
 ```
+
+
+* #### 1.12 结构体切片
+```go
+package main
+
+import "fmt"
+
+
+type test2 struct {
+	Name string
+	Age int	
+}
+
+type test struct {
+	id int
+	m []test2
+}	
+
+func (T *test) AddTest(tmp test2) {
+	T.m = append(T.m, tmp)
+}
+
+func main () {
+	a := test{}
+	a.id = 11
+	// 赋值
+	a.m = []test2{{Name:"sreio",Age:12},{Name: "aaa", Age: 13}}
+	// 追加
+	a.m = append(a.m, test2{Name: "a", Age: 2})
+	a.m = append(a.m, test2{Name: "b", Age: 3})
+	// 通过结构体方法追加
+	tmp := test2{Name: "ss", Age: 4}
+	a.AddTest(tmp)
+	fmt.Println(a)
+}
+
+```
