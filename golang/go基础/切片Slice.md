@@ -683,6 +683,7 @@ strings.Replace(strings.Trim(fmt.Sprint(array_or_slice), "[]"), " ", ",", -1)
 
 
 * #### 1.12 结构体切片
+
 ```go
 package main
 
