@@ -87,4 +87,5 @@
       - [接口](/golang/go基础/接口.md)
     - Go 知识归纳
       - [新手容易踩的50个坑](/golang/go知识归纳/新手容易踩的坑.md)
+      - [gc垃圾回收机机制](/golang/go知识归纳/gc垃圾回收.md)
     - [Go框架](/golang/Go框架/README.md)
