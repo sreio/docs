@@ -69,6 +69,8 @@
     - [44.答疑文章（三）：说一说这些好问题.pdf](/mysql/mysql实战45讲/44.md)
     - [45.自增id用完怎么办？.pdf](/mysql/mysql实战45讲/45.md)
     - [结束语.点线网面一起构建MySQL知识网络.pdf](/mysql/mysql实战45讲/46.md)
+  - Mysql实践技巧
+    - [show full processlist](/mysql/Mysql实践技巧/processlist.md)
 - Golang
   - Go基础
     - [命令](/golang/go基础/命令.md)
