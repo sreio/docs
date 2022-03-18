@@ -145,7 +145,8 @@
     - 第17章：加解密
   - Go 标准库 Example
     - [string 字符串操作](/golang/go_example/1_strings.md)
-    - [time](/golang/go_example/2_time.md)
+    - [time 时间](/golang/go_example/2_time.md)
+    - [strconv 转换类型](/golang/go_example/3_strconv.md)
   - [Go框架](/golang/Go框架/README.md)
 - Docker
   - Docker — 从入门到实践
