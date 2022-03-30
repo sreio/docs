@@ -16,6 +16,9 @@
       - [迭代器模式](/php/PHP设计模式/行为型模型/迭代器模式.md)
       - [策略模式](/php/PHP设计模式/行为型模型/策略模式.md)
       - [观察者模式](/php/PHP设计模式/行为型模型/观察者模式.md)
+  - Laravel
+    - 框架学习
+      - [laravel生命周期](/php/laravel/框架学习/生命周期.md)
       
 - Mysql
   - Mysql实战45讲
