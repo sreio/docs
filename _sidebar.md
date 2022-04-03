@@ -26,6 +26,8 @@
         - [服务容器的初始化](/php/laravel/laravel之道/自动加载与容器初始化/服务容器的初始化.md)
         - [服务容器之bind](/php/laravel/laravel之道/自动加载与容器初始化/服务容器之bind.md)
         - [服务容器之make](/php/laravel/laravel之道/自动加载与容器初始化/服务容器之make.md)
+      - SymfonyRequest与bootstrap启动加载
+        - [请求对象之SymfonyRequest](/php/laravel/laravel之道/SymfonyRequest与bootstrap启动加载/请求对象之SymfonyRequest.md)
       
 - Mysql
   - Mysql实践技巧
