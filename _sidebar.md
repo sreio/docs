@@ -22,6 +22,10 @@
     - [laravl之道](/php/laravel/laravel之道/README.md)
       - 自动加载与容器初始化
         - [Composer 自动加载原理](/php/laravel/laravel之道/自动加载与容器初始化/composer.md)
+        - [服务容器粗浅认知](/php/laravel/laravel之道/自动加载与容器初始化/服务容器粗浅认知.md)
+        - [服务容器的初始化](/php/laravel/laravel之道/自动加载与容器初始化/服务容器的初始化.md)
+        - [服务容器之bind](/php/laravel/laravel之道/自动加载与容器初始化/服务容器之bind.md)
+        - [服务容器之make](/php/laravel/laravel之道/自动加载与容器初始化/服务容器之make.md)
       
 - Mysql
   - Mysql实践技巧
