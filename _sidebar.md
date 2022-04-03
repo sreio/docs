@@ -19,6 +19,9 @@
   - Laravel
     - 框架学习
       - [laravel生命周期](/php/laravel/框架学习/生命周期.md)
+    - [laravl之道](/php/laravel/laravel之道/README.md)
+      - 自动加载与容器初始化
+        - [Composer 自动加载原理](/php/laravel/laravel之道/自动加载与容器初始化/composer.md)
       
 - Mysql
   - Mysql实践技巧
