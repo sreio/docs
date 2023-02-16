@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Sreio Docs</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Sreio Docs;php;go;golang">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="./css/vue.css">
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css"> -->
+  <!-- 折叠样式 -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/sidebar.min.css" />
+
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: '',
+      repo: 'sreio/docs',
+      // 加载 _sidebar.md
+      loadSidebar: true,
+      // 加载 summary.md
+      // loadSidebar: 'summary.md',
+      loadSidebar: true,
+      // 启用相对路径
+      // relativePath: true,
+      subMaxLevel: 2,
+      // 折叠目录
+      sidebarDisplayLevel: 1, 
+      search: 'auto', // 默认值
+      // 切换页面后自动跳转到页面顶部
+      auto2top: true,
+      // 避免递归查找_sidebar.md
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      // 分页
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+        crossChapter: true,
+        crossChapterText: true,
+      },
+      // 字数统计
+      count: {
+        countable: true,
+        position: 'top',
+        margin: '10px',
+        float: 'right',
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese',
+        localization: {
+          words: "",
+          minute: ""
+        },
+        isExpected: true,       
+      },
+      // top
+      scrollToTop: {
+        auto: true,
+        text: 'Top',
+        right: 15,
+        bottom: 15,
+        offset: 500
+      },
+      //进度条
+      progress: {
+        position: "top",
+        color: "var(--theme-color,#42b983)",
+        height: "3px",
+      }
+    }
+  </script>
+  <!-- Docsify v4 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- 复制 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+  <!-- search -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+  <!-- prism -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js"></script>
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-cil.min.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-css.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-jq.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-sql.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-nginx.min.js"></script>
+  <!-- Pagination -->
+  <script src="/js/docsify-pagination.min.js"></script>
+  <!-- docsify-count -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
+  <!-- 折叠目录 -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+  <!-- 页面滚动回顶部的插件 -->
+  <script src="/js/docsify-scroll-to-top.min.js"></script>
+
+  <!-- gitalk -->
+  <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+  <script>
+    const gitalk = new Gitalk({
+      clientID: 'e885a160a4c2f88cd4e4',
+      clientSecret: 'bdc9f4f33ed9bcadaf2a5efcdac612ed3f78361d',
+      repo: 'gitalk',
+      owner: 'sreio',
+      admin: ['sreio'],
+      id: decodeURI(location.href.split("/").pop()),
+      // facebook-like distraction free mode
+      distractionFreeMode: false
+    })
+  </script> -->
+
+  <!-- PDFObject.js is a required dependency of this plugin -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdfobject/2.1.1/pdfobject.min.js"></script> 
+  <!-- or use this if you are not hosting the file yourself -->
+  <script src="/js/docsify-pdf-embed.js"></script>
+  <!-- 进度条 -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
+
+</body>
+
+</html>
