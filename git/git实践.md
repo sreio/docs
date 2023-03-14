@@ -119,8 +119,6 @@ git version 2.36.0
 
 ### checkout
 
-~~该命令职责不明确，不建议使用；~~
-
 `git checkout <file>` 丢弃工作区的修改
 
 `git checkout -f` 强制丢弃工作区和暂存区的修改
@@ -128,4 +126,8 @@ git version 2.36.0
 `git checkout <branch>` 切换分支
 
 `git checkout -b <branch>` 创建并切换分支
+
+### rm
+
+`git rm -r --cahche <file/dir>` 删除临时文件缓存
 
