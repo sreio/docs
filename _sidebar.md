@@ -33,6 +33,7 @@
   - Mysql实践技巧
     - [show full processlist](/mysql/Mysql实践技巧/processlist.md)
     - [explain/desc](/mysql/Mysql实践技巧/explain_desc.md)
+    - [varchar最大字符串](/mysql/Mysql实践技巧/varchar_maxlen.md)
   - Mysql45讲
     - [1、一条SQL查询语句是如何执行的？](/mysql/Mysql45讲/1_sql_select.md)
     - [2、一条SQL更新语句是如何执行的？](/mysql/Mysql45讲/2_sql_update.md)
