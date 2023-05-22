@@ -127,6 +127,8 @@ git version 2.36.0
 
 `git checkout -b <branch>` 创建并切换分支
 
+`git checkout -p <branch> <file>` 将<branch>分支的<file>合并到当前分支下
+
 ### rm
 
 `git rm -r --cahche <file/dir>` 删除临时文件缓存
