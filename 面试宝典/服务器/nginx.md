@@ -240,7 +240,7 @@ http {
 - [Linux之locate](#16)
 
 <a name="1"></a>
-### **1.Nginx实现一个IP访问总流量限制**
+## 1.Nginx实现一个IP访问总流量限制
 
 ```nginx
 http {
@@ -264,28 +264,28 @@ server {
 }
 ```
 <a name="2"></a>
-## **2.统计服务器所有url被请求的数量**
+## 2.统计服务器所有url被请求的数量
 
 ```bash
 #统计其他端口时：netstat -pnt | grep :xx | wc -l
 netstat -pnt | grep :443 | wc -l
 ```
 <a name="3"></a>
-## **3.查找请求数前20个IP**
+## 3.查找请求数前20个IP
 
 ```bash
 #服务器被恶意高频访问时可以用到
 netstat -ant |awk '/:443/{split($5,ip,":");++A[ip[1]]}END{for(i in A) print A[i],i}' |sort -rn|head -n20
 ```
 <a name="4"></a>
-## **4.统计文件中某个字符串出现的次数**
+## 4.统计文件中某个字符串出现的次数
 
 ```bash
 #如统计文件api_error.log中error关键词出现的次数
 grep -o 'error' /www/payment/runtime/logs/api_error.log | wc -l
 ```
 <a name="5"></a>
-## **5.监听文件**
+## 5.监听文件
 
 ```bash
 #可以监听整个文件，也可根据关键词监听
@@ -297,7 +297,7 @@ tail -f xxx.log | grep 'xxx' #根据关键词监听
 tail -Nf xxx.log  #N为要查看的、最近多少条日志，例如tail -100f xxx.log 显示 xxx.log 里尾部100行的内容，且不断刷新。
 ```
 <a name="6"></a>
-## **6.查看文件大小**
+## 6.查看文件大小
 ```bash
 #以下是本人开发中常用到的
 一、du命令
@@ -322,7 +322,7 @@ ls -h filepath h表示human, 加-h参数得到人好读的文件大小
 ls -lh ljl.txt
 ```
 <a name="7"></a>
-## **7.查看ip来源地**
+## 7.查看ip来源地
 
 ```bash
 #使用这个是为了查看异常登录地址
@@ -330,13 +330,13 @@ yum -y install whois
 whois 119.53.224.203
 ```
 <a name="8"></a>
-## **8. 查看磁盘使用情况**
+## 8. 查看磁盘使用情况
 
 ```bash
 df -h
 ```
 <a name="9"></a>
-## **9.创建软链接**
+## 9.创建软链接
 
 ```bash
 ln -s [源文件或目录] [目标文件或目录]
@@ -353,13 +353,13 @@ ln -s /usr/local/nginx/sbin/nginx nginx
 就可以从 /usr/local/nginx/sbin/nginx -s reload 简化为 nginx -s reload
 ```
 <a name="10"></a>
-## **10.查看是否监听9000端口（其他端口雷同）**
+## 10.查看是否监听9000端口（其他端口雷同）
 
 ```bash
 netstat -ant | grep 9000
 ```
 <a name="11"></a>
-## **11.Nginx之 解决跨域问题**
+## 11.Nginx之 解决跨域问题
 
 ```nginx
 #server模块中添加以下内容，修改完后，记得重启nginx
@@ -375,7 +375,7 @@ add_header  Access-Control-Allow-Methods 'GET,POST,OPTIONS';
 #Access-Control-Allow-Headers：为了防止出现Request header field Content-Type is not allowed by Access-Control-Allow-Headers in preflight response的错误信息。这个错误表示当前请求Content-Type的值不被支持。其实是我们发起了”application/json”的类型请求导致的
 ```
 <a name="12"></a>
-## **12.Nginx之 配置ssl(小白看过来)**
+## 12.Nginx之 配置ssl(小白看过来)
 ```nginx
 server {
     listen 443 ssl;#监听443端口
@@ -408,7 +408,7 @@ server {
 ```
 
 <a name="13"></a>
-## **13.Nginx之 开放防火墙端口**
+## 13.Nginx之 开放防火墙端口
 
 > 紧接着上面的 12.Nginx配置ssl 中 server_name 提到的给项目开端口
 
@@ -457,7 +457,7 @@ firewall-cmd --add-port=80/tcp --permanent     ##永久添加80端口
 ```
 
 <a name="14"></a>
-## **14.Linux之 cat 命令**
+## 14.Linux之 cat 命令
 
 ```bash
 #是不是以为cat只有 cat filename 这个命令？
@@ -520,7 +520,7 @@ cat filename > newfile
 ```
 
 <a name="15"></a>
-## **15. Nginx之 实现网络负载均衡**
+## 15. Nginx之 实现网络负载均衡
 
 ```nginx
 nginx内置负载均衡策略主要分为三大类，分别是轮询、最少连接和ip hash
@@ -587,7 +587,7 @@ upstream myapp1 {
 ```
 
 <a name="16"></a>
-## **16. Linux之 locate**
+## 16. Linux之 locate
 
 ```bash
 #命令简介
