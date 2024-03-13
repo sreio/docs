@@ -1,5 +1,5 @@
 - 面试宝典
-  - [PHP](/面试宝典/php%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/README.md)
+  - [PHP](/面试宝典/php/README.md)
   - [PHP面试题](/面试宝典/php%E9%9D%A2%E8%AF%95%E9%A2%98/README.md)
   - [数据库](/面试宝典/数据库/README.md)
   - [服务器](/面试宝典/服务器/README.md)
