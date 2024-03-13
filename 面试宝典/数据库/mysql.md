@@ -111,7 +111,7 @@
 
 ### 何时使用聚集索引或非聚集索引？
 
-![聚集索引](https://cdn.learnku.com/uploads/images/202109/24/26612/iJhV6tH0W5.webp!large)
+![聚集索引](./img/7.png)
 
 ## 8\. limit 1000000 加载很慢的话，你是怎么解决的呢？
 
