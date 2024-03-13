@@ -117,19 +117,17 @@
 
 方案一：如果id是连续的，可以这样，返回上次查询的最大记录(偏移量)，再往下limit
 
-```
+```sql
 select id，name from employee where id>1000000 limit 10.
-复制代码
 ```
 
 方案二：在业务允许的情况下限制页数： 建议跟业务讨论，有没有必要查这么后的分页啦。因为绝大多数用户都不会往后翻太多页。
 
 方案三：order by + 索引（id为索引）
 
-```
+```sql
 select id，name from employee order by id  limit 1000000，10
 SELECT a.* FROM employee a, (select id from employee where 条件 LIMIT 1000000,10 ) b where a.id=b.id
-复制代码
 ```
 
 方案四：利用延迟关联或者子查询优化超多分页场景。（先快速定位需要获取的id段，然后再关联）
@@ -152,13 +150,12 @@ SELECT a.* FROM employee a, (select id from employee where 条件 LIMIT 1000000,
 
 建表语句：
 
-```
+```sql
 CREATE TABLE `T`  (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = INNODB;
-复制代码
 ```
 
 数据列表：
@@ -173,16 +170,14 @@ CREATE TABLE `T`  (
 
 事务A，先执行，处于未提交的状态：
 
-```
+```sql
 insert into T values(4, wangwu); 
-复制代码
 ```
 
 事务B，后执行，也未提交：
 
-```
+```sql
 select * from T; 
-复制代码
 ```
 
 如果事务B能够读取到(4, wangwu)这条记录，事务A就对事务B产生了影响，这个影响叫做“读脏”，读到了未提交事务操作的记录。
@@ -191,27 +186,24 @@ select * from T;
 
 事务A，先执行：
 
-```
+```sql
 select * from T where id=1; 
-复制代码
 ```
 
 结果集为：1, xiaohong
 
 事务B，后执行，并且提交：
 
-```
+```sql
 update T set name=hzy where id=1; 
-复制代码
 ```
 
 commit;
 
 事务A，再次执行相同的查询：
 
-```
+```sql
 select * from T where id=1; 
-复制代码
 ```
 
 结果集为：1, hzy
@@ -222,29 +214,26 @@ select * from T where id=1;
 
 事务A，先执行：
 
-```
+```sql
 select * from T where id>3; 
-复制代码
 ```
 
 结果集为： NULL
 
 事务B，后执行，并且提交：
 
-```
+```sql
 insert into T values(4, wangwu); 
 commit; 
-复制代码
 ```
 
 事务A，首次查询了id>3的结果为NULL，于是想插入一条为4的记录：
 
-```
+```sql
 insert into T values(4, hzy); 
-复制代码
 ```
 
-结果集为： Error : duplicate key!
+结果集为： `Error : duplicate key!`
 
 这次是已提交事务B对事务A产生的影响，这个影响叫做“幻读”。
 
@@ -308,9 +297,8 @@ InnoDB使用不同的锁策略(Locking Strategy)来实现不同的隔离级别�
 
 悲观锁思想就是，当前线程要进来修改数据时，别的线程都得拒之门外~ 比如，可以使用select…for update
 
-```
+```sql
 select * from User where name=‘jay’ for update
-复制代码
 ```
 
 以上这条sql语句会锁定了User表中所有符合检索条件（name=‘jay’）的记录。本次事务提交之前，别的线程都无法修改这些记录。
@@ -376,9 +364,8 @@ select查询语句是不会加锁的，但是select for update除了有查询的
 
 当我们创建一个组合索引的时候，如(k1,k2,k3)，相当于创建了（k1）、(k1,k2)和(k1,k2,k3)三个索引，这就是最左匹配原则。
 
-```
+```sql
 select * from table where k1=A AND k2=B AND k3=D
-复制代码
 ```
 
 有关于复合索引，我们需要关注查询Sql条件的顺序，确保最左匹配原则有效，同时可以删除不必要的冗余索引。
@@ -387,9 +374,8 @@ select * from table where k1=A AND k2=B AND k3=D
 
 假设表A表示某企业的员工表，表B表示部门表，查询所有部门的所有员工，很容易有以下SQL:
 
-```
+```sql
 select * from A where deptId in (select deptId from B);
-复制代码
 ```
 
 这样写等价于：
@@ -398,7 +384,7 @@ select * from A where deptId in (select deptId from B);
 
 可以抽象成这样的一个循环：
 
-```
+```java
 List<> resultSet ;
     for(int i=0;i<B.length;i++) {
           for(int j=0;j<A.length;j++) {
@@ -408,14 +394,12 @@ List<> resultSet ;
           }
        }
     }
-复制代码
 ```
 
 显然，除了使用in，我们也可以用exists实现一样的查询功能，如下：
 
-```
+```sql
 select * from A where exists (select 1 from B where A.deptId = B.deptId);
-复制代码
 ```
 
 因为exists查询的理解就是，先执行主查询，获得数据后，再放到子查询中做条件验证，根据验证结果（true或者false），来决定主查询的数据结果是否得意保留。
@@ -426,7 +410,7 @@ select * from A,先从A表做循环 select * from B where A.deptId = B.deptId,�
 
 同理，可以抽象成这样一个循环：
 
-```
+```java
 List<> resultSet ;
     for(int i=0;i<A.length;i++) {
           for(int j=0;j<B.length;j++) {
@@ -436,7 +420,6 @@ List<> resultSet ;
           }
        }
     }
-复制代码
 ```
 
 数据库最费劲的就是跟程序链接释放。假设链接了两次，每次做上百万次的数据集查询，查完就走，这样就只做了两次；相反建立了上百万次链接，申请链接释放反复重复，这样系统就受不了了。即mysql优化原则，就是小表驱动大表，小的数据集驱动大的数据集，从而让性能更优。 因此，我们要选择最外层循环小的，也就是，如果B的数据量小于A，适合使用in，如果B的数据量大于A，即适合选择exists，这就是in和exists的区别。
@@ -498,7 +481,7 @@ sharding-jdbc目前是基于jdbc驱动，无需额外的proxy，因此也无需�
 
 ## 22\. MySQL的主从延迟，你怎么解决？
 
-![主从](https://cdn.learnku.com/uploads/images/202109/24/26612/jsoGevk1ZW.webp!large)
+![主从](./img/22.png)
 
 ### 主从复制分了五个步骤进行：
 
@@ -548,7 +531,7 @@ sharding-jdbc目前是基于jdbc驱动，无需额外的proxy，因此也无需�
 
 MySQL分为Server层和存储引擎层两个部分，不同的存储引擎共用一个Server层。
 
-![在这里插入图片描述](https://cdn.learnku.com/uploads/images/202109/24/26612/LEut9udtru.webp!large)
+![在这里插入图片描述](./img/25.png)
 
 Server层：大多数MySQL的核心服务功能都在这一层，包括连接处理、授权认证、查询解析、分析、优化、缓存以及所有的内置函数（例如，日期、时间、数学和加密函数），所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图等。
 
@@ -562,9 +545,8 @@ MySQL客户端与服务端的通信方式是“**半双工**”，客户端一�
 
 连接命令：
 
-```
+```bash
 mysql -h$ip -p$port -u$user -p
-复制代码
 ```
 
 输完命令之后，需要在交互对话里面输入密码，密码不建议在-p后面直接输入，这样会导致密码泄露。
@@ -683,7 +665,7 @@ create index index_name_phoneNum on t_user(name,phoneNum)
 
 找出离散性好的列，离散性越高，可选择性就越好。
 
-![在这里插入图片描述](https://cdn.learnku.com/uploads/images/202109/24/26612/9p2lxRNccP.webp!large) 例如：sex字段，只有男和女，离散性很差，因此选择性很差
+![在这里插入图片描述](./img/26.png) 例如：sex字段，只有男和女，离散性很差，因此选择性很差
 
 ## 27\. 数据库存储日期格式时，如何考虑时区转换问题？
 
@@ -843,13 +825,12 @@ select * from t where id=1 for update; 它会在id=1的索引记录上加锁，�
 
 建表语句：
 
-```
+```sql
 mysql> CREATE TABLE `T`  (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = INNODB;
-复制代码
 ```
 
 数据列表：
@@ -883,13 +864,12 @@ mysql> CREATE TABLE `T`  (
 
 建表语句：
 
-```
+```sql
 mysql> CREATE TABLE `T`  (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = INNODB;
-复制代码
 ```
 
 数据列表：
@@ -929,13 +909,12 @@ PK上潜在的临键锁为：
 
 建表语句：
 
-```
+```sql
 mysql> CREATE TABLE `T`  (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = INNODB;
-复制代码
 ```
 
 数据列表：
@@ -966,13 +945,12 @@ insert into t values(12, ooo);
 
 建表语句：
 
-```
+```sql
 mysql> CREATE TABLE `T`  (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = INNODB;
-复制代码
 ```
 
 数据列表：
@@ -1142,7 +1120,7 @@ Master及其Slave之间的半同步复制操作如下： Slave表示连接到Mas
 
 ### 在执行CREATE TABLE时创建索引
 
-```
+```sql
 CREATE TABLE `employee` (
   `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
@@ -1152,21 +1130,21 @@ CREATE TABLE `employee` (
   PRIMARY KEY (`id`),
   KEY `idx_name` (`name`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-复制代码
+
 ```
 
 ### 使用ALTER TABLE命令添加索引
 
-```
+```sql
 ALTER TABLE table_name ADD INDEX index_name (column);
-复制代码
+
 ```
 
 ### 使用CREATE INDEX命令创建
 
-```
+```sql
 CREATE INDEX index_name ON table_name (column);
-复制代码
+
 ```
 
 ## 43\. 百万级别或以上的数据，你是如何删除的？
@@ -1187,7 +1165,7 @@ CREATE INDEX index_name ON table_name (column);
 
 ## 46\. 何时使用聚簇索引与非聚簇索引
 
-![聚簇索引](https://cdn.learnku.com/uploads/images/202109/24/26612/Moz5xw1F8F.webp!large)
+![聚簇索引](./img/46.png)
 
 ## 47\. 非聚簇索引一定会回表查询吗？
 
@@ -1201,7 +1179,7 @@ CREATE INDEX index_name ON table_name (column);
 
 ## 49\. 什么是死锁？怎么解决？
 
-死锁是指两个或多个事务在同一资源上相互占用，并请求锁定对方的资源，从而导致恶性循环的现象。看图形象一点，如下： ![事务.png](https://cdn.learnku.com/uploads/images/202109/24/26612/8OPdPDCUN6.webp!large)
+死锁是指两个或多个事务在同一资源上相互占用，并请求锁定对方的资源，从而导致恶性循环的现象。看图形象一点，如下： ![事务.png](./img/49.png)
 
 死锁有四个必要条件：互斥条件，请求和保持条件，环路等待条件，不剥夺条件。 解决死锁思路，一般就是切断环路，尽量避免并发形成环路。
 
