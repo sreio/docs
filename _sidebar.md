@@ -4,6 +4,7 @@
   - [数据库](/面试宝典/数据库/README.md)
     - [MYSQL](/面试宝典/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql.md)
   - [服务器](/面试宝典/服务器/README.md)
+    - [nginx](/面试宝典/服务器/nginx.md)
   - [其他](/面试宝典/其他/README.md)
 - PHP
   - [PHP设计模式](/php/PHP设计模式/README.md)
