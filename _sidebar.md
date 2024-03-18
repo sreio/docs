@@ -1,9 +1,13 @@
 - 面试宝典
-  - [PHP](/面试宝典/php%E9%9D%A2%E8%AF%95%E8%B5%84%E6%96%99/README.md)
+  - [PHP](/面试宝典/php/README.md)
   - [数据库](/面试宝典/数据库/README.md)
+    - [MySQL](/面试宝典/数据库/mysql.md)
+    - [Redis](/面试宝典/数据库/redis.md)
   - [服务器](/面试宝典/服务器/README.md)
+    - [nginx](/面试宝典/服务器/nginx.md)
   - [其他](/面试宝典/其他/README.md)
 - PHP
+  - [php-fpm](/php/php-fpm.md)
   - [PHP设计模式](/php/PHP设计模式/README.md)
     - [创建型模型](/php/PHP设计模式/创建型模型/README.md)
       - [简单工厂模式](/php/PHP设计模式/创建型模型/简单工厂模式.md)
@@ -33,7 +37,8 @@
         - [服务容器之make](/php/laravel/laravel之道/自动加载与容器初始化/服务容器之make.md)
       - SymfonyRequest与bootstrap启动加载
         - [请求对象之SymfonyRequest](/php/laravel/laravel之道/SymfonyRequest与bootstrap启动加载/请求对象之SymfonyRequest.md)
-      
+- Nginx
+  - [nginx.conf](/Nginx/nginx.md)      
 - Mysql
   - Mysql实践技巧
     - [show full processlist](/mysql/Mysql实践技巧/processlist.md)
