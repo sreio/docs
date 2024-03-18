@@ -1,7 +1,8 @@
 - 面试宝典
   - [PHP](/面试宝典/php/README.md)
   - [数据库](/面试宝典/数据库/README.md)
-    - [MYSQL](/面试宝典/数据库/mysql.md)
+    - [MySQL](/面试宝典/数据库/mysql.md)
+    - [Redis](/面试宝典/数据库/redis.md)
   - [服务器](/面试宝典/服务器/README.md)
     - [nginx](/面试宝典/服务器/nginx.md)
   - [其他](/面试宝典/其他/README.md)
