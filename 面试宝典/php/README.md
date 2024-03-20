@@ -1,11 +1,11 @@
 ?> 复习整理PHP相关的学习资料
 
 
-## isset和empty的区别？
+### isset和empty的区别？
 
 `Isset`测试变量是否`被赋值`，如果这个变量没被赋值，则返回false，`empty`是判断变量是否`为空`，当赋值为0，null,’’,返回true为真。他们之间最大的区别就是当一个变量被赋值0时，empty判断它为空，而isset判断它有值不为空。
 
-## 面向对象的七大原则
+### 面向对象的七大原则
     单一职责原则
     开放封闭原则
     里式替换原则
@@ -14,79 +14,77 @@
     迪米特原则
     合成/聚合复用原则
 
-## php基本变量类型
+### php基本变量类型
     四种标量类型 ：boolean （布尔型）、integer （整型）、float （浮点型, 也称作 double)、string （字符串）
 
     四种复合类型 ：array （数组）、object （对象）、callable、iterable
 
     最后是两种特殊类型 ：resource（资源）、NULL（NULL）
 
-## PHP魔术方法
+### PHP魔术方法
+    13个常用的魔术方法
+        __construct、 __destruct、 __call 或 __classStatic、 __get、 __set、 __isset、 __unset、 __toString、 __clone、 __sutoload、 __invoke、 __sleep、 __wakeup
+
+    1. __construct 构造方法
+        __construct构造方法，当一个类被实例化创建对象时，会首先执行构造方法。
     
-### 13个常用的魔术方法
-    __construct、 __destruct、 __call 或 __classStatic、 __get、 __set、 __isset、 __unset、 __toString、 __clone、 __sutoload、 __invoke、 __sleep、 __wakeup
-
-1. __construct 构造方法
-    __construct构造方法，当一个类被实例化创建对象时，会首先执行构造方法。
-
-2. __destruct 析构方法
-    __destruct 析构方法， 当对象在销毁之前或失去对对象的引用时，会调用 析构方法。
-
-3. __call 或 __callStatic
-    当调用一个未定义的或没有权限的成员方法时，会调用 __call 方法。（当在静态方法中调用一个未定义的或没有权限的成员方法时，则会调用 __callStatic 方法。）
-    如果本类找不到调用的成员方法，会去父类中找。
-    如果本类找不到 __call 方法，会去父类中找。
-
-4. __get
-    当调用一个未定义的或非公有的成员属性时，会调用 __get 方法。
-
-5. __set
-    当给一个未定义的或非公有的成员属性赋值时， 会调用 __set 方法。
-
-6. __isset
-    当在一个未定义的或非公有的成员属性上调用 isset函数时，会调用 __isset 方法。
-
-7. __unset
-    当在一个未定义或非公有的成员属性上调用 unset函数时，会调用 __unset 方法。
-
-8. __toString
-    在打印输出一个对象时, 会自动调用 __toString 方法。 例: echo 对象名。
-
-9. __clone
-    当克隆一个对象时, 会自动调用 __clone 方法。 例: $clone_obj = clone 对象名;
-
-10. __autoload
-    在实例化一个尚未被定义的类时会自动调用 __autoload 来加载类文件。
-
-11. __invoke
-    当尝试以调用函数的方式调用一个对象时, 会自动调用 __invoke 方法。
-
-12. __sleep
-    serialize() 函数会检查类中是否存在 __sleep 方法，如果存在，先执行 __sleep 方法，再执行 序列化操作。
+    2. __destruct 析构方法
+        __destruct 析构方法， 当对象在销毁之前或失去对对象的引用时，会调用 析构方法。
     
-```php
-    class User
-    {
-        public function __sleep(){
-            // 
-        }
-    }
-    $obj = new User();
-    serialize($obj);
-```
+    3. __call 或 __callStatic
+        当调用一个未定义的或没有权限的成员方法时，会调用 __call 方法。（当在静态方法中调用一个未定义的或没有权限的成员方法时，则会调用 __callStatic 方法。）
+        如果本类找不到调用的成员方法，会去父类中找。
+        如果本类找不到 __call 方法，会去父类中找。
+    
+    4. __get
+        当调用一个未定义的或非公有的成员属性时，会调用 __get 方法。
 
-13. __wakeup
-    unserialize() 函数会检查类中是否存在 __wakeup 方法，如果存在，先执行 __wakeup 方法，再执行 反序列化操作。
-    ```php
-    class User
-    {
-        public function __wakeup(){
-            // 
+    5. __set
+        当给一个未定义的或非公有的成员属性赋值时， 会调用 __set 方法。
+
+    6. __isset
+        当在一个未定义的或非公有的成员属性上调用 isset函数时，会调用 __isset 方法。
+
+    7. __unset
+        当在一个未定义或非公有的成员属性上调用 unset函数时，会调用 __unset 方法。
+
+    8. __toString
+       在打印输出一个对象时, 会自动调用 __toString 方法。 例: echo 对象名。
+    
+    9. __clone
+        当克隆一个对象时, 会自动调用 __clone 方法。 例: $clone_obj = clone 对象名;
+    
+    10. __autoload
+        在实例化一个尚未被定义的类时会自动调用 __autoload 来加载类文件。
+
+    11. __invoke
+        当尝试以调用函数的方式调用一个对象时, 会自动调用 __invoke 方法。
+
+    12. __sleep
+        serialize() 函数会检查类中是否存在 __sleep 方法，如果存在，先执行 __sleep 方法，再执行 序列化操作。
+        ```php
+            class User
+            {
+                public function __sleep(){
+                    // 
+                }
+            }
+            $obj = new User();
+            serialize($obj);
+        ```
+    
+    13. __wakeup
+        unserialize() 函数会检查类中是否存在 __wakeup 方法，如果存在，先执行 __wakeup 方法，再执行 反序列化操作。
+        ```php
+        class User
+        {
+            public function __wakeup(){
+                // 
+            }
         }
-    }
-    $obj = new User();
-    unserialize($obj);
-    ```
+        $obj = new User();
+        unserialize($obj);
+        ```
 
 ### PHP魔术常量
     PHP 含有 9 个魔术常量。它们的值随着它们在代码中的位置改变而改变。
@@ -145,13 +143,22 @@
     9. $GLOBALS
         $GLOBALS 是一个关联数组， 包含对当前脚本全局 范围内定义的所有变量。
 
+
 ### PHP垃圾回收机制（GC）
-    1. 使用 引用计数机制
-    2. 将每个 PHP 变量保存在一个叫 zval 变量容器中。
-    3. zval 变量容器 包含 变量的类型、变量值、 is_res、refcount
-    4. is_ref 用于标识该变量是否为引用集合或变量。
-    5. refcount 表示指向当前变量的个数。
-    6. 默认打开垃圾回收机制, 当发现有存在循环引用的zval时, 就会把其投入到根缓冲区, 当根缓冲区达到配置文件中的指定数量后, 就会进行垃圾回收, 以此解决8. 循环引用导致的内存泄露问题
-    7. 如果引用计数减少到零, 所在变量容器将被清除（free）, 不属于垃圾；
-    8. 如果一个zval的引用计数减少后还大于0, 那么它会进入垃圾周期。
-    9. 其次, 在一个垃圾周期中, 通过检查引用计数是否减1, 并且检查哪些变量容器的引用次数是零, 来发现哪部分是垃圾。
+    1. 使用 引用计数机制
+
+    2. 将每个 PHP 变量保存在一个叫 zval 变量容器中。
+
+    3. zval 变量容器 包含 变量的类型、变量值、 is_res、refcount
+
+    4. is_ref 用于标识该变量是否为引用集合或变量。
+
+    5. refcount 表示指向当前变量的个数。
+
+    6. 默认打开垃圾回收机制, 当发现有存在循环引用的zval时, 就会把其投入到根缓冲区, 当根缓冲区达到配置文件中的指定数量后, 就会进行垃圾回收, 以此解决8. 循环引用导致的内存泄露问题
+
+    7. 如果引用计数减少到零, 所在变量容器将被清除（free）, 不属于垃圾；
+
+    8. 如果一个zval的引用计数减少后还大于0, 那么它会进入垃圾周期。
+
+    9. 其次, 在一个垃圾周期中, 通过检查引用计数是否减1, 并且检查哪些变量容器的引用次数是零, 来发现哪部分是垃圾。
