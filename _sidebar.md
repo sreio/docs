@@ -73,6 +73,13 @@
     - [循环语句for](/Golang基础入门/流程控制/for.md)
     - [循环语句range](/Golang基础入门/流程控制/range.md)
     - [循环控制Goto、Break、Continue](/Golang基础入门/流程控制/other.md)
+  - 函数
+    - [函数定义](/Golang基础入门/函数/函数定义.md)
+    - [函数参数](/Golang基础入门/函数/函数参数.md)
+    - [返回值](/Golang基础入门/函数/返回值.md)
+    - [匿名函数](/Golang基础入门/函数/匿名函数.md)
+    - [递归函数](/Golang基础入门/函数/递归函数.md)
+    - [延迟调用](/Golang基础入门/函数/延迟调用.md)
 - Golang
   - Go 知识归纳
     - [新手容易踩的50个坑](/golang/go知识归纳/新手容易踩的坑.md)
