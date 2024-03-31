@@ -39,7 +39,11 @@
       - SymfonyRequest与bootstrap启动加载
         - [请求对象之SymfonyRequest](/php/laravel/laravel之道/SymfonyRequest与bootstrap启动加载/请求对象之SymfonyRequest.md)
 - Nginx
-  - [nginx.conf](/Nginx/nginx.md)      
+  - [nginx.conf](/Nginx/nginx.md)  
+- HTTP
+  - [HTTP状态码](/HTTP/http_status_code.md)    
+  - [content-type](/HTTP/http_content_type.md)    
+  - [HTTP2](/HTTP/http2.md)    
 - Mysql
   - Mysql实践技巧
     - [show full processlist](/mysql/Mysql实践技巧/processlist.md)
