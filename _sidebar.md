@@ -153,7 +153,9 @@
     - [string 字符串操作](/golang/go_example/1_strings.md)
     - [time 时间](/golang/go_example/2_time.md)
     - [strconv 转换类型](/golang/go_example/3_strconv.md)
-    - [Gorm](/golang/go_example/100_gorm.md)
+  - 第三方库推荐
+    - [Gorm](/golang/third_libraries/gorm.md)
+    - [go-redis](/golang/third_libraries/go_redis.md)
   - [Go框架](/golang/Go框架/README.md)
   - [Go Build](/golang/go_build.md)
 - Docker
