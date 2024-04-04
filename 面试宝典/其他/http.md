@@ -1,12 +1,12 @@
 ## 现代浏览器在与服务器建立了一个 TCP 连接后是否会在一个 HTTP 请求完成后断开？什么情况下会断开？
 
-在 HTTP/1.0 中，一个服务器在发送完一个 HTTP 响应后，会断开 TCP 链接。但是这样每次请求都会重新建立和断开 TCP 连接，代价过大。所以虽然标准中没有设定，某些服务器对 `Connection: keep-alive` 的 `Header` 进行了支持。意思是说，完成这个 HTTP 请求之后，不要断开 HTTP 请求使用的 TCP 连接。这样的好处是连接可以被重新使用，之后发送 HTTP 请求的时候不需要重新建立 TCP 连接，以及如果维持连接，那么 SSL 的开销也可以避免，两张图片是我短时间内两次访问 https://www.github.com 的时间统计：
+在 HTTP/1.0 中，一个服务器在发送完一个 HTTP 响应后，会断开 TCP 链接。但是这样每次请求都会重新建立和断开 TCP 连接，代价过大。所以虽然标准中没有设定，某些服务器对 `Connection: keep-alive` 的 `Header` 进行了支持。意思是说，完成这个 HTTP 请求之后，不要断开 HTTP 请求使用的 TCP 连接。这样的好处是连接可以被重新使用，之后发送 HTTP 请求的时候不需要重新建立 TCP 连接，以及如果维持连接，那么 SSL 的开销也可以避免，两张图片是我短时间内两次访问 https://www.baidu.com 的时间统计：
 
-![图片](https://cdn.learnku.com/uploads/images/202302/20/56030/bJW2Jc3kaX.jpeg!large)
+![图片](./img/1-1.png ':size=50%')
 
 头一次访问，有初始化连接和 SSL 开销
 
-![图片](https://cdn.learnku.com/uploads/images/202302/20/56030/O6m1gjEtdP.jpeg!large)
+![图片](./img/1-2.png ':size=50%')
 
 初始化连接和 SSL 开销消失了，说明使用的是同一个 TCP 连接
 
@@ -14,7 +14,11 @@
 
 所以第一个问题的答案是：默认情况下建立 TCP 连接不会断开，只有在请求报头中声明 Connection: close 才会在请求完成后关闭连接。
 
-> 结论：`HTTP/1.0`中完成一个`http`响应后会断开`tcp`链接，除非配置`web`服务器的`header`的`Connection: keep-alive`。而`HTTP/1.1`协议把`Connection: keep-alive`设置成默认开启持久链接，直到请求中声明`Connection: close`断开链接才会关闭`tcp`
+> 结论：
+> 
+> `HTTP/1.0`中完成一个`http`响应后会断开`tcp`链接，除非配置`web`服务器的`header`的`Connection: keep-alive`。
+> 
+> `HTTP/1.1`协议把`Connection: keep-alive`设置成默认开启持久链接，直到请求中声明`Connection: close`断开链接才会关闭`tcp`
 
 ## 一个 TCP 连接可以对应几个 HTTP 请求？
 
@@ -51,11 +55,11 @@ Pipelining 这种设想看起来比较美好，但是在实践中会出现许多
 
 但是，`HTTP2` 提供了 `Multiplexing 多路传输特性`，可以在`一个 TCP 连接中同时完成多个 HTTP 请求`。至于 `Multiplexing` 具体怎么实现的就是另一个问题了。我们可以看一下使用 HTTP2 的效果。
 
-![图片](https://cdn.learnku.com/uploads/images/202302/20/56030/LFiIEPBZ9g.jpeg!large)
+![图片](./img/1-3.png)
 
 绿色是发起请求到请求返回的等待时间，蓝色是响应的下载时间，可以看到都是在同一个 Connection，并行完成的
 
-所以这个问题也有了答案：`在 HTTP/1.1 存在 Pipelining 技术可以完成这个多个请求同时发送，但是由于浏览器默认关闭，所以可以认为这是不可行的。在 HTTP2 中由于 Multiplexing 特点的存在，多个 HTTP 请求可以在同一个 TCP 连接中并行进行。`
+> 所以这个问题也有了答案：`在 HTTP/1.1 存在 Pipelining 技术可以完成这个多个请求同时发送，但是由于浏览器默认关闭，所以可以认为这是不可行的。在 HTTP2 中由于 Multiplexing 特点的存在，多个 HTTP 请求可以在同一个 TCP 连接中并行进行。`
 
 那么在 HTTP/1.1 时代，浏览器是如何提高页面加载效率的呢？主要有下面两点：
 
@@ -71,7 +75,7 @@ Pipelining 这种设想看起来比较美好，但是在实践中会出现许多
 
 假设我们还处在 HTTP/1.1 时代，那个时候没有多路传输，当浏览器拿到一个有几十张图片的网页该怎么办呢？肯定不能只开一个 TCP 连接顺序下载，那样用户肯定等的很难受，但是如果每个图片都开一个 TCP 连接发 HTTP 请求，那电脑或者服务器都可能受不了，要是有 1000 张图片的话总不能开 1000 个TCP 连接吧，你的电脑同意 NAT 也不一定会同意。
 
-所以答案是：`有。Chrome 最多允许对同一个 Host 建立六个 TCP 连接。不同的浏览器有一些区别。`
+> 所以答案是：`有。Chrome 最多允许对同一个 Host 建立六个 TCP 连接。不同的浏览器有一些区别。`
 
 https://developers.google.com/web/tools/chrome-devtools/network/issues#queued-or-stalled-requestsdevelopers.google.com
 
