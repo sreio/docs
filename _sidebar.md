@@ -6,8 +6,9 @@
   - [服务器](/面试宝典/服务器/README.md)
     - [nginx](/面试宝典/服务器/nginx.md)
   - [其他](/面试宝典/其他/README.md)
-    - [TCP/IP](/面试宝典/其他/tcp_ip.md)
+    - [http](/面试宝典/其他/http.md)
 - PHP
+  - [穿透Laravel](/php/laravel.md)
   - [php-fpm](/php/php-fpm.md)
   - [PHP设计模式](/php/PHP设计模式/README.md)
     - [创建型模型](/php/PHP设计模式/创建型模型/README.md)
@@ -26,21 +27,10 @@
       - [迭代器模式](/php/PHP设计模式/行为型模型/迭代器模式.md)
       - [策略模式](/php/PHP设计模式/行为型模型/策略模式.md)
       - [观察者模式](/php/PHP设计模式/行为型模型/观察者模式.md)
-  - Laravel
-    - 框架学习
-      - [laravel生命周期](/php/laravel/框架学习/生命周期.md)
-    - [laravl之道](/php/laravel/laravel之道/README.md)
-      - 自动加载与容器初始化
-        - [Composer 自动加载原理](/php/laravel/laravel之道/自动加载与容器初始化/composer.md)
-        - [服务容器粗浅认知](/php/laravel/laravel之道/自动加载与容器初始化/服务容器粗浅认知.md)
-        - [服务容器的初始化](/php/laravel/laravel之道/自动加载与容器初始化/服务容器的初始化.md)
-        - [服务容器之bind](/php/laravel/laravel之道/自动加载与容器初始化/服务容器之bind.md)
-        - [服务容器之make](/php/laravel/laravel之道/自动加载与容器初始化/服务容器之make.md)
-      - SymfonyRequest与bootstrap启动加载
-        - [请求对象之SymfonyRequest](/php/laravel/laravel之道/SymfonyRequest与bootstrap启动加载/请求对象之SymfonyRequest.md)
 - Nginx
   - [nginx.conf](/Nginx/nginx.md)  
 - HTTP
+  - [TCP/IP](/HTTP/tcp_ip.md)
   - [HTTP状态码](/HTTP/http_status_code.md)    
   - [content-type](/HTTP/http_content_type.md)    
   - [HTTP2](/HTTP/http2.md)    
