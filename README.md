@@ -2,8 +2,13 @@
 
 > 记录学习中遇到的知识点和各种有趣的小技巧。
 
-# 本地预览
+## 在线地址
 
+[srrio](https://docs.srrio.com]
+[github](https://sreio.github.io/docs/]
+[sreio](http://docs.sreio.com]
+
+# 本地预览
 ```bash
 // 全局安装 docsify-cli 工具
 npm i docsify-cli -g
