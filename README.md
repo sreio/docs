@@ -4,9 +4,9 @@
 
 ## 在线地址
 
-- [srrio](https://docs.srrio.com]
-- [github](https://sreio.github.io/docs/]
-- [sreio](http://docs.sreio.com]
+- [srrio](https://docs.srrio.com)
+- [github](https://sreio.github.io/docs/)
+- [sreio](http://docs.sreio.com)
 
 # 本地预览
 ```bash
