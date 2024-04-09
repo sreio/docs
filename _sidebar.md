@@ -67,7 +67,7 @@
     - [3、事务隔离：为什么你改了我还看不见？](/mysql/Mysql45讲/3_sql_transaction.md)
 - [ELK](/ELK/README.md)
   - Elasticsearch
-    - [初识es](/ELK/Elasticsearch/README.md)
+    - [初识es](/ELK/Elasticsearch/readme.md)
     - [kibana操作](/ELK/Elasticsearch/dsl.md)
     - [curl操作](/ELK/Elasticsearch/curl.md)
     - [其他查询curl操作](/ELK/Elasticsearch/other.md)
