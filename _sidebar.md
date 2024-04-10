@@ -187,6 +187,7 @@
     - [time 时间](/golang/go_example/2_time.md)
     - [strconv 转换类型](/golang/go_example/3_strconv.md)
   - 第三方库推荐
+    - [awesome-go-cn](/golang/third_libraries/awesome-go-cn.md)
     - [Gorm](/golang/third_libraries/gorm.md)
     - [go-redis](/golang/third_libraries/go_redis.md)
     - [goravel](/golang/third_libraries/goravel.md)
