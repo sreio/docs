@@ -15,9 +15,9 @@
 ### 安装
 
 ```bash
-docker pull elasticsearch:7.6.0
-docker pull kibana:7.6.0
-docker pull logstash:7.6.0
+docker pull elasticsearch:7.1.1
+docker pull kibana:7.1.1
+docker pull logstash:7.1.1
 
 
 docker run -d --restart=always --name es7 -p 9200:9200 -p 9300:9300 -e "discovery.type=single-node" elasticsearch:7.6.0
@@ -27,3 +27,4 @@ docker run -di --name kibana -p 5601:5601 kibana:7.6.0
 ### 操作示例
 
 - [go操作es](/golang/third_libraries/go_elasticsearch.md)
+- [php操作es](/php/demo/laravel-es.md)

@@ -49,6 +49,8 @@
     - [附录九：Route之findRoute方法](/php/穿透laravel/附录九：Route之findRoute方法/README.md)
     - [附录十：Route之run方法](/php/穿透laravel/附录十：Route之run方法/README.md)
     - [附录十一：ServiceProvider类的注册和引导](/php/穿透laravel/附录十一：ServiceProvider类的注册和引导/README.md)
+  - 使用案例
+    - [laravel-es](/php/demo/laravel-es.md)
 - Nginx
   - [nginx.conf](/Nginx/nginx.md)  
 - HTTP
