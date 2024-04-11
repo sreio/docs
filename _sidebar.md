@@ -208,6 +208,9 @@
     - [wechat](/golang/third_libraries/wechat.md)
   - [Go框架](/golang/Go框架/README.md)
   - [Go Build](/golang/go_build.md)
+  - gRPC
+    - [gRPC及相关介绍](/golang/grpc/README.md)
+    - [gRPC之message](/golang/grpc/message.md)
 - Docker
   - Docker — 从入门到实践
     - [Docker 简介](/docker/Docker-从入门到实践/start.md)
