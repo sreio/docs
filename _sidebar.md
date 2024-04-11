@@ -7,6 +7,7 @@
     - [nginx](/面试宝典/服务器/nginx.md)
   - [其他](/面试宝典/其他/README.md)
     - [http](/面试宝典/其他/http.md)
+    - [session和cookie](/面试宝典/其他/session.md)
 - PHP
   - [php-fpm](/php/php-fpm.md)
   - [PHP设计模式](/php/PHP设计模式/README.md)
