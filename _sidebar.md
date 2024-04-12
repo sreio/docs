@@ -266,5 +266,14 @@
 - GitLab
   - [GitLab-CI/CD](/gitlab/git_ci_cd.md)
 - Linux
-  - 常见命令总结
+  - [常见命令总结](/linux/cli/README.md)
+    - [man](/linux/cli/man.md)
     - [top](/linux/cli/top.md)
+    - [curl](/linux/cli/curl.md)
+    - [ip](/linux/cli/ip.md)
+    - [nc](/linux/cli/nc.md)
+    - [ifconfig](/linux/cli/ifconfig.md)
+    - [tcpdump](/linux/cli/tcpdump.md)
+    - [iperf](/linux/cli/iperf.md)
+  - 常用工具
+    - [ad](/linux/tools/ab.md)
