@@ -60,7 +60,9 @@
   - [content-type](/HTTP/http_content_type.md)    
   - [HTTP2](/HTTP/http2.md) 
 - 数据结构与算法
-  - [Hello算法](/数据结构与算法/Hello算法/README.md)   
+  - [Hello算法](/数据结构与算法/Hello算法/README.md)  
+  - 数据结构与算法案例
+    - [交换两个变量值](/数据结构与算法/数据结构与算法案例/A_swap_B.md) 
 - Mysql
   - Mysql实践技巧
     - [show full processlist](/mysql/Mysql实践技巧/processlist.md)
