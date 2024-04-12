@@ -19,8 +19,6 @@ console.log('a', a, 'b', b)
 ```
 
 ```php
-a = a ^ b
-console.log('a', a, 'b', b)
 list($a, $b) = array($b, $a);
 
 # 或 数组下标
