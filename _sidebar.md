@@ -217,7 +217,11 @@
   - [Go Build](/golang/go_build.md)
   - gRPC
     - [gRPC及相关介绍](/golang/grpc/README.md)
-    - [gRPC之message](/golang/grpc/message.md)
+    - [gRPC之定义变量](/golang/grpc/message.md)
+    - [gRPC之入门实例](/golang/grpc/rpc.md)
+    - [服务端流式RPC](/golang/grpc/server_rpc.md)
+    - [客户端流式RPC](/golang/grpc/client_rpc.md)
+    - [双向流式RPC](/golang/grpc/server_client_rpc.md)
 - Docker
   - Docker — 从入门到实践
     - [Docker 简介](/docker/Docker-从入门到实践/start.md)
