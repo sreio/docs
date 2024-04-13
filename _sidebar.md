@@ -74,6 +74,8 @@
     - [1、一条SQL查询语句是如何执行的？](/mysql/Mysql45讲/1_sql_select.md)
     - [2、一条SQL更新语句是如何执行的？](/mysql/Mysql45讲/2_sql_update.md)
     - [3、事务隔离：为什么你改了我还看不见？](/mysql/Mysql45讲/3_sql_transaction.md)
+- 消息队列
+  - [初识消息队列](/消息队列/初识消息队列.md)
 - [ELK](/ELK/README.md)
   - Elasticsearch
     - [初识es](/ELK/ElasticSearch/readme.md)
@@ -281,3 +283,6 @@
     - [iperf](/linux/cli/iperf.md)
   - 常用工具
     - [ad](/linux/tools/ab.md)
+- 其他
+  - 用户鉴权
+    - [jwt](/其他/用户鉴权/jwt.md)
