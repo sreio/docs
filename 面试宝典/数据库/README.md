@@ -3,5 +3,6 @@
 
 - [MySQL](/面试宝典/数据库/mysql.md)
 - [Redis](/面试宝典/数据库/redis.md)
+- Memcached
 - MongoDB
 - ES
