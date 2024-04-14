@@ -10,6 +10,10 @@ a, b = b, a
 
 ## 方法一：数组交换
 
+<!-- tabs:start -->
+
+#### **js**
+
 ```js
 let a = 1
 let b = 2
@@ -17,6 +21,8 @@ let b = 2
 
 console.log('a', a, 'b', b)
 ```
+
+#### **php**
 
 ```php
 list($a, $b) = array($b, $a);
@@ -28,8 +34,13 @@ $a = $array[1];
 $b = $array[0];
 ```
 
+<!-- tabs:end -->
 
 ## 方法二：异或
+
+<!-- tabs:start -->
+
+#### **js**
 
 ```js
 let a = 1
@@ -40,6 +51,8 @@ a = a ^ b
 console.log('a', a, 'b', b)
 ```
 
+#### **php**
+
 ```php
 $a=1;
 $b=2;
@@ -47,6 +60,7 @@ $a=$a^$b;
 $b=$a^$b;
 $a=$a^$b;
 ```
+<!-- tabs:end -->
 
 ### 讲解
 
@@ -77,6 +91,9 @@ $a=$a^$b;
 
 ## 方法三：使用加法交换两个变量的值
 
+<!-- tabs:start -->
+#### **js**
+
 ```js
 let a = 1
 let b = 2
@@ -89,6 +106,8 @@ console.log('a', a, 'b', b)
 
 ```
 
+#### **php**
+
 ```php
 $a=1;
 $b=2;
@@ -96,9 +115,11 @@ $a=$a+$b;
 $b=$a-$b;
 $a=$a-$b;
 ```
+<!-- tabs:end -->
 
 ## 方法四：使用减法交换两个变量的值
-
+<!-- tabs:start -->
+#### **js**
 ```js
 let a = 1
 let b = 2
@@ -109,7 +130,7 @@ a = b - a // The value of a is b(1) - a(-1) = 2
 
 console.log('a', a, 'b', b)
 ```
-
+#### **php**
 ```php
 $a=1;
 $b=2;
@@ -117,4 +138,4 @@ $a=$a-$b;
 $b=$b+$a;
 $a=$b-$a;
 ```
-
+<!-- tabs:end -->

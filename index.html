@@ -17,6 +17,19 @@
   <div id="app"></div>
   <script>
     window.$docsify = {
+      // ...
+      tabs: {
+        persist: true, // default
+        sync: true, // default
+        theme: 'classic', // default
+        tabComments: true, // default
+        tabHeadings: true // default
+      }
+    };
+  </script>
+  
+  <script>
+    window.$docsify = {
       name: '',
       repo: 'sreio/docs',
       // 加载 _sidebar.md
@@ -101,6 +114,8 @@
   <script src="//cdn.jsdelivr.net/npm/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
   <!-- 页面滚动回顶部的插件 -->
   <script src="/assets/js/docsify-scroll-to-top.min.js"></script>
+  <!-- docsify-tabs (latest v1.x.x) -->
+  <script src="https://cdn.jsdelivr.net/npm/docsify-tabs@1"></script>
 
   <!-- gitalk -->
   <!-- <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
