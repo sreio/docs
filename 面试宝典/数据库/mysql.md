@@ -1204,3 +1204,117 @@ CREATE INDEX index_name ON table_name (column);
 
 监控的工具有很多，例如zabbix，lepus，我这里用的是lepus
 
+## 51. redo log 了解吗?
+
+`redo log（重做日志）`是InnoDB存储引擎独有的，它让MySQL拥有了`崩溃恢复能力`。
+
+比如 MySQL 实例挂了或宕机了，重启时，InnoDB存储引擎会使用`redo log`恢复数据，保证数据的持久性与完整性。
+
+更新表数据的时候，如果发现 `Buffer Pool` 里存在要更新的数据，就直接在 `Buffer Pool` 里更新。然后会把“在某个数据页上做了什么修改”记录到重做日志缓存（`redo log buffer`）里，接着刷盘到 `redo log` 文件里。
+
+## 52. redo log 的刷盘时机
+
+![redo log](./img/52.webp)
+
+- 红色部分为 redo log buffer 属于内存
+- 黄色部分为 page cache ，此时已经写入磁盘了，但是未进行持久化
+- 绿色部分是硬盘，已经完成持久化
+
+InnoDB 存储引擎为 redo log 的刷盘策略提供了 `innodb_flush_log_at_trx_commit` 参数，它支持三种策略
+
+- 设置为`0`的时候，表示每次事务提交时`不进行刷盘操作`，只是保留在 `redo log buffer`中，mysql 崩溃会丢失1s的数据；
+- 设置为`1`的时候，表示每次事务提交时`都将进行刷盘操作`（默认值），持久化到磁盘；
+- 设置为`2`的时候，表示每次事务提交时都只把`redo log buffer`内容写入`page cache`，OS宕机会丢失1s的数据，因为未进行持久化；
+
+
+`innodb_flush_log_at_trx_commit` 参数默认为 `1` ，也就是说当事务提交时会调用 `fsync(同步操作)` 对 `redo log `进行刷盘。
+
+另外 InnoDB 存储引擎有一个后台线程，每隔1秒，就会把` redo log buffer` 中的内容写到文件系统缓存（`page cache`），然后调用 `fsync` 刷盘。
+
+redo log buffer占用的空间即将达到 `innodb_log_buffer_size `一半的时候，后台线程会主动刷盘。
+
+## 53. redo log 是怎么记录日志的
+
+硬盘上存储的 redo log 日志文件不只一个，而是以一个日志文件组的形式出现的，每个的redo日志文件大小都是一样的。
+
+比如可以配置为一组4个文件，每个文件的大小是 1GB，整个 redo log 日志文件组可以记录4G的内容。
+
+它采用的是`环形数组`形式，`从头开始写，写到末尾又回到头循环写`，如下图所示。
+
+![redo log](./img/53.webp)
+
+所以，如果数据写满了但是还没有来得及将数据真正的刷入磁盘当中，那么就会发生「`内存抖动`」现象，从肉眼的角度来观察会发现 mysql 会宕机一会儿，此时就是正在刷盘了。
+
+
+## 54. 什么是 binlog
+
+`binlog` 是归档日志，属于 `Server` 层的日志，是一个`二进制格式的文件`，记录内容是`语句的原始逻辑`，类似于“给 ID=2 这一行的 c 字段加 1”。
+
+不管用什么存储引擎，只要发生了表数据更新，都会产生 `binlog` 日志。它的主要作用就是`数据备份`、`主从复制`。
+
+`binlog`会记录所有涉及更新数据的逻辑操作，属于逻辑日志，并且是`顺序写`。
+
+## 55. binlog 记录格式
+
+inlog 日志有三种格式，可以通过`binlog_format`参数指定。
+
+- `statement` ：记录的内容是SQL语句原文，存在数据一致性问题；
+- `row`：记录包含操作的具体数据，能保证同步数据的一致性；
+- `mixed`：记录的内容是前两者的混合，MySQL会判断这条SQL语句是否可能引起数据不一致：如果是，就用row格式，否则就用statement格式。
+
+## 56. binlog 写入机制
+
+事务执行过程中，先把日志写到`binlog cache`，事务提交的时候，再把`binlog cache`写到`binlog`文件中。
+
+因为一个事务的`binlog`不能被拆开，无论这个事务多大，也要确保一次性写入，所以系统会给每个线程分配一个块内存作为`binlog cache`。
+
+我们可以通过`binlog_cache_size`参数控制单个线程 `binlog cache` 大小，如果存储内容超过了这个参数，就要暂存到`磁盘`（Swap）。
+
+``binlog`` 也提供了 `sync_binlog` 参数来控制写入 `page cache` 和磁盘的时机：
+
+- `0`：每次提交事务都只写入到文件系统的 page cache，由系统自行判断什么时候执行fsync，机器宕机，`page cache里面的 binlog 会丢失`。
+- `1`：每次提交事务都会执行fsync，就如同 redo log 日志刷盘流程 一样。
+- `N(N>1)`：每次提交事务都写入到文件系统的 page cache，但累积N个事务后才fsync。如果机器宕机，会`丢失最近N个事务的binlog日志`。
+
+## 57. redolog 和 binlog 的区别是什么
+
+- `redolog 是 Innodb 独有的日志`，而` binlog 是 server 层的`，所有的存储引擎都有使用到；
+- `redolog 记录了具体的数值`，对某个页做了什么修改，`binlog 记录的操作内容`；
+- `binlog 大小达到上限或者 flush log 会生成一个新的文件`，而 `redolog 有固定大小只能循环利用`；
+- binlog 日志没有 crash-safe 的能力，只能用于归档，而 redo log 有 crash-safe 能力；
+- redo log 在事务执行过程中可以不断写入（刷盘设置为1，后台线程1s执行一次或者 redo log buffer 占用的空间即将达到 innodb_log_buffer_size 一半的时候），而 binlog 只有在提交事务时才写入文件缓存系统；
+
+## 58. 两阶段提交
+
+假设执行 sql 过程中写完 redo log 日志后，binlog 日志写期间发生了异常，会出现什么情况呢？
+
+由于 binlog 没写完就异常，这时候 binlog 里面没有对应的修改记录。因此，之后用 binlog 日志恢复数据时，就会少这一次更新，最终数据不一致。
+
+为了解决两份日志之间的逻辑一致问题，InnoDB 存储引擎使用两阶段提交方案。
+
+将 redo log 的写入拆成了两个步骤 prepare 和 commit，这就是两阶段提交。使用两阶段提交后，写入 binlog 时发生异常也不会有影响，因为 MySQL 根据 redo log日志恢复数据时，发现 redo log 还处于 prepare 阶段，并且没有对应 binlog 日志，就会回滚该事务。
+
+再看一个场景，redo log 设置 commit 阶段发生异常，那会不会回滚事务呢？
+
+并不会回滚事务，虽然 redo log 是处于 prepare 阶段，但是能通过事务id找到对应的 binlog 日志，所以 MySQL 认为是完整的，就会提交事务恢复数据。
+
+## 59. 什么是 undo log.
+
+我们知道如果想要`保证事务的原子性`，就需要在异常发生时，对已经执行的操作（INSERT、DELETE、UPDATE）进行回滚，在 MySQL 中，恢复机制是通过`回滚日志（undo log）` 实现的，所有事务进行的修改都会先记录到这个回滚日志中，然后再执行相关的操作。
+
+每次对记录进行改动都会记录一条 `undo log`，每条 undo log 也都有一个`DB_ROLL_PTR`属性，可以将这些 undo log 都连起来，串成一个链表，形成版本链。
+
+版本链的头节点就是当前记录最新的值。
+
+![undo log](./img/59.webp)
+
+
+## 60. 什么是 relaylog
+
+relaylog 是中继日志，在`主从同步`的时候使用到，它是一个中介临时的日志文件，用于存储从 master 节点同步过来的 binlog 日志内容。
+
+![relaylog](./img/60.webp)
+
+master 主节点的 binlog 传到 slave 从节点后，被写入 relay log 里，从节点的 slave sql 线程从 relaylog 里读取日志然后应用到 slave 从节点本地。
+
+从服务器 I/O 线程将主服务器的二进制日志读取过来记录到从服务器本地文件，然后 SQL 线程会读取 relay-log 日志的内容并应用到从服务器，从而使从服务器和主服务器的数据保持一致。
