@@ -8,7 +8,7 @@
 
 在 `.dockerignore` 文件中写入以下内容。
 
-```bash
+```terminal
 .idea/
 .git/
 
@@ -133,7 +133,7 @@ COPY --from=laravel ${LARAVEL_PATH}/public ${LARAVEL_PATH}/public
 
 使用 `docker build` 命令构建镜像。
 
-```bash
+```terminal
 $ docker build -t my/laravel --target=laravel .
 
 $ docker build -t my/nginx --target=nginx .
@@ -143,19 +143,19 @@ $ docker build -t my/nginx --target=nginx .
 
 新建 Docker 网络
 
-```bash
+```terminal
 $ docker network create laravel
 ```
 
 启动 laravel 容器， `--name=laravel` 参数设定的名字必须与 `nginx` 配置文件中的 `fastcgi_pass   laravel:9000;` 一致
 
-```bash
+```terminal
 $ docker run -dit --rm --name=laravel --network=laravel my/laravel
 ```
 
 启动 nginx 容器
 
-```bash
+```terminal
 $ docker run -dit --rm --network=laravel -p 8080:80 my/nginx
 ```
 

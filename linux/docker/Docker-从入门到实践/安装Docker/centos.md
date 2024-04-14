@@ -12,7 +12,7 @@ Docker 支持 64 位版本 CentOS 7/8，并且要求内核版本不低于 3.10�
 
 旧版本的 Docker 称为 `docker` 或者 `docker-engine`，使用以下命令卸载旧版本：
 
-```bash
+```terminal
 $ sudo yum remove docker \
                   docker-client \
                   docker-client-latest \
@@ -29,7 +29,7 @@ $ sudo yum remove docker \
 
 执行以下命令安装依赖包：
 
-```bash
+```terminal
 $ sudo yum install -y yum-utils
 ```
 
@@ -37,7 +37,7 @@ $ sudo yum install -y yum-utils
 
 执行下面的命令添加 `yum` 软件源：
 
-```bash
+```terminal
 $ sudo yum-config-manager \
     --add-repo \
     https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
@@ -52,7 +52,7 @@ $ sudo sed -i 's/download.docker.com/mirrors.aliyun.com\/docker-ce/g' /etc/yum.r
 
 如果需要测试版本的 Docker 请执行以下命令：
 
-```bash
+```terminal
 $ sudo yum-config-manager --enable docker-ce-test
 ```
 
@@ -60,7 +60,7 @@ $ sudo yum-config-manager --enable docker-ce-test
 
 更新 `yum` 软件源缓存，并安装 `docker-ce`。
 
-```bash
+```terminal
 $ sudo yum install docker-ce docker-ce-cli containerd.io
 ```
 
@@ -70,14 +70,14 @@ $ sudo yum install docker-ce docker-ce-cli containerd.io
 
 更改 `/etc/firewalld/firewalld.conf`
 
-```bash
+```terminal
 # FirewallBackend=nftables
 FirewallBackend=iptables
 ```
 
 或者执行如下命令：
 
-```bash
+```terminal
 $ firewall-cmd --permanent --zone=trusted --add-interface=docker0
 
 $ firewall-cmd --reload
@@ -89,7 +89,7 @@ $ firewall-cmd --reload
 
 > 若你想安装测试版的 Docker, 请从 test.docker.com 获取脚本
 
-```bash
+```terminal
 # $ curl -fsSL test.docker.com -o get-docker.sh
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
@@ -100,7 +100,7 @@ $ sudo sh get-docker.sh --mirror Aliyun
 
 ## 启动 Docker
 
-```bash
+```terminal
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
 ```
@@ -111,13 +111,13 @@ $ sudo systemctl start docker
 
 建立 `docker` 组：
 
-```bash
+```terminal
 $ sudo groupadd docker
 ```
 
 将当前用户加入 `docker` 组：
 
-```bash
+```terminal
 $ sudo usermod -aG docker $USER
 ```
 
@@ -125,7 +125,7 @@ $ sudo usermod -aG docker $USER
 
 ## 测试 Docker 是否安装正确
 
-```bash
+```terminal
 $ docker run --rm hello-world
 
 Unable to find image 'hello-world:latest' locally
@@ -166,14 +166,14 @@ For more examples and ideas, visit:
 
 如果在 CentOS 使用 Docker 看到下面的这些警告信息：
 
-```bash
+```terminal
 WARNING: bridge-nf-call-iptables is disabled
 WARNING: bridge-nf-call-ip6tables is disabled
 ```
 
 请添加内核配置参数以启用这些功能。
 
-```bash
+```terminal
 $ sudo tee -a /etc/sysctl.conf <<-EOF
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
@@ -182,7 +182,7 @@ EOF
 
 然后重新加载 `sysctl.conf` 即可
 
-```bash
+```terminal
 $ sudo sysctl -p
 ```
 

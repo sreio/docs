@@ -246,13 +246,13 @@ func main() {
 }
 ```
 
-```bash
+```terminal
 $ go run trace.go 
 Hello World
 ```
 
 会得到一个 trace.out 文件，然后我们可以用一个工具打开，来分析这个文件。
-```bash
+```terminal
 $ go tool trace trace.out
 2024/03/29 16:45:58 Preparing trace for viewer...
 2024/03/29 16:45:58 Splitting trace for viewer...
@@ -302,7 +302,7 @@ func main() {
 
 编译
 
-```bash
+```terminal
 $ go build trace2.go
 ```
 
@@ -310,7 +310,7 @@ $ go build trace2.go
 
 通过Debug方式运行
 
-```bash
+```terminal
 $ GODEBUG=schedtrace=1000 ./trace2 
 SCHED 0ms: gomaxprocs=2 idleprocs=0 threads=4 spinningthreads=1 idlethreads=1 runqueue=0 [0 0]
 Hello World

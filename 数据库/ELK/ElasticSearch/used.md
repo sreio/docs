@@ -1,13 +1,13 @@
 ## 通过json文件批量导入
 
-```bash
+```terminal
 curl -XPOST "http://elasticsearch:9200/索引库/_bulk?pretty" -H 'Content-Type: application/json' --data-binary "@accounts.json"
 ```
 
 > `_bulk`: 表示批量处理
 
 ## 查看所有的索引
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/_cat/indices?v"
 ```
 > `v`: 表示 verbose 的意思，这样可以更可读（有表头，有对齐），如果不加v，不会显示表头
@@ -23,13 +23,13 @@ curl -XGET "http://elasticsearch:9200/_cat/indices?v"
 - `pri.store.size`：分片数据存储的大小。
 
 ## 查看es集群是否健康
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/_cat/health?v"
 ```
 ![](./img/3-2.png)
 
 ## 查看集群节点
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/_cat/nodes?v"
 ```
 

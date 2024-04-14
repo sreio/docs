@@ -14,7 +14,7 @@ CMD echo 1
 
 构建镜像后推送到 Docker Hub，之后我们尝试在树莓派 `Linux arm64v8` 中使用这个镜像。
 
-```bash
+```terminal
 $ docker run -it --rm username/test
 ```
 
@@ -34,7 +34,7 @@ $ docker run -it --rm username/test
 
 我们可以使用 `$ docker manifest inspect golang:alpine` 查看这个 `manifest` 列表的结构。
 
-```bash
+```terminal
 $ docker manifest inspect golang:alpine
 ```
 
@@ -113,7 +113,7 @@ $ docker manifest inspect golang:alpine
 
 ## 创建 `manifest` 列表
 
-```bash
+```terminal
 # $ docker manifest create MANIFEST_LIST MANIFEST [MANIFEST...]
 $ docker manifest create username/test \
       username/x8664-test \
@@ -124,7 +124,7 @@ $ docker manifest create username/test \
 
 ## 设置 `manifest` 列表
 
-```bash
+```terminal
 # $ docker manifest annotate [OPTIONS] MANIFEST_LIST MANIFEST
 $ docker manifest annotate username/test \
       username/x8664-test \
@@ -139,7 +139,7 @@ $ docker manifest annotate username/test \
 
 ## 查看 `manifest` 列表
 
-```bash
+```terminal
 $ docker manifest inspect username/test
 ```
 
@@ -147,7 +147,7 @@ $ docker manifest inspect username/test
 
 最后我们可以将其推送到 Docker Hub。
 
-```bash
+```terminal
 $ docker manifest push username/test
 ```
 

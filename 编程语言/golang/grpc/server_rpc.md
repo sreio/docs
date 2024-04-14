@@ -83,7 +83,7 @@ message HelloResponse {
 
 在项目`grpc_study/grpc_server_rpc/proto`目录下执行如下命令：
 
-```bash
+```terminal
 protoc --go_out=. --go-grpc_out=. .\server.proto
 protoc --go_out=. --go-grpc_out=. .\client.proto
 ```

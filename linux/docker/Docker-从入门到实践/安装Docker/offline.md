@@ -19,7 +19,7 @@
 
 ####  查询可用的软件版本(A)
 
-```bash
+```terminal
 #下载清华的镜像源文件
 wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
 
@@ -28,7 +28,7 @@ sudo sed -i 's+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc
 yum update
 ```
 
-```bash
+```terminal
 sudo yum list docker-ce --showduplicates|sort -r
 
 Loading mirror speeds from cached hostfile
@@ -46,11 +46,11 @@ docker-ce.x86_64            3:19.03.1-3.el7                     docker-ce-stable
 
 #### 下载到指定文件夹(A)
 
-```bash
+```terminal
 sudo yum install --downloadonly --downloaddir=/tmp/docker-19.03 docker-ce-19.03.8-3.el7 docker-ce-cli-19.03.8-3.el7 
 ```
 
-```bash
+```terminal
 Dependencies Resolved
 
 ====================================================================================================================================================================================
@@ -80,7 +80,7 @@ exiting because "Download Only" specified
 ```
 #### 复制到目标服务器之后进入文件夹安装(C-N)
 
-```bash
+```terminal
 yum install *.rpm
 ```
 
@@ -88,23 +88,23 @@ yum install *.rpm
 
 ##### 下载锁定版本软件
 可参考下文的网络源搭建
-```bash
+```terminal
 sudo yum install yum-plugin-versionlock
 ```
 
 ##### 锁定软件版本
 
-```bash
+```terminal
 sudo yum versionlock add docker
 ```
 
 ##### 查看锁定列表
 
-```bash
+```terminal
 sudo yum versionlock list
 ```
 
-```bash
+```terminal
 Loaded plugins: fastestmirror, versionlock
 3:docker-ce-18.09.9-3.el7.*
 versionlock list done
@@ -112,7 +112,7 @@ versionlock list done
 
 ##### 锁定后无法再更新
 
-```bash
+```terminal
 sudo yum install docker-ce
 Loaded plugins: fastestmirror, versionlock
 Loading mirror speeds from cached hostfile
@@ -123,11 +123,11 @@ Nothing to do
 
 ##### 解锁指定软件
 
-```bash
+```terminal
 sudo yum versionlock delete docker-ce
 ```
 
-```bash
+```terminal
 Loaded plugins: fastestmirror, versionlock
 Deleting versionlock for: 3:docker-ce-18.09.9-3.el7.*
 versionlock deleted: 1
@@ -135,7 +135,7 @@ versionlock deleted: 1
 
 ##### 解锁所有软件
 
-```bash
+```terminal
 sudo yum versionlock delete all
 ```
 
@@ -145,14 +145,14 @@ sudo yum versionlock delete all
 
 #### 挂载 ISO 镜像搭建本地 File 源（AB）
 
-```bash
+```terminal
 # 删除其他网络源
 rm -f /etc/yum.repo.d/*
 # 挂载光盘或者iso镜像
 mount /dev/cdrom /mnt
 ```
 
-```bash
+```terminal
 # 添加本地源
 cat >/etc/yum.repos.d/local_files.repo<< EOF
 [Local_Files]
@@ -164,7 +164,7 @@ gpgkey=file:///mnt/RPM-GPG-KEY-CentOS-7
 EOF
 ```
 
-```bash
+```terminal
 # 测试刚才的本地源,安装createrepo软件
 yum clean all 
 yum install createrepo -y
@@ -174,7 +174,7 @@ yum install createrepo -y
 
 #### 根据本地文件搭建BASE网络源（B）
 
-```bash
+```terminal
 # 安装apache 服务器
 yum install httpd -y
 # 挂载光盘
@@ -192,13 +192,13 @@ systemctl start httpd
 
 在有网络的服务器上下载Docker-ce镜像
 
-```bash
+```terminal
 # 下载清华的镜像源文件
 wget -O /etc/yum.repos.d/docker-ce.repo https://download.docker.com/linux/centos/docker-ce.repo
 sudo sed -i 's+download.docker.com+mirrors.tuna.tsinghua.edu.cn/docker-ce+' /etc/yum.repos.d/docker-ce.repo
 ```
 
-```bash
+```terminal
 # 新建 docker-ce目录
 mkdir /tmp/docker-ce/
 # 把镜像源同步到镜像文件中
@@ -209,7 +209,7 @@ reposync -r docker-ce-stable -p /tmp/docker-ce/
 
 把下载的 docker-ce 文件夹复制到离线的服务器
 
-```bash
+```terminal
 # 把docker-ce 文件夹复制到/var/www/html/docker-ce
 # 重建索引
 createrepo  /var/www/html/docker-ce/
@@ -217,7 +217,7 @@ createrepo  /var/www/html/docker-ce/
 
 #### YUM 客户端设置（C...N）
 
-```bash
+```terminal
 rm -f /etc/yum.repo.d/*
 cat >/etc/yum.repos.d/local_files.repo<< EOF
 [local_base]
@@ -240,7 +240,7 @@ EOF
 
 #### Docker 安装（C...N）
 
-```bash
+```terminal
 sudo yum makecache fast
 sudo yum install docker-ce docker-ce-cli containerd.io
 sudo systemctl enable docker

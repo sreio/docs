@@ -13,7 +13,7 @@ VOLUME /data
 
 这里的 `/data` 目录就会在容器运行时自动挂载为匿名卷，任何向 `/data` 中写入的信息都不会记录进容器存储层，从而保证了容器存储层的无状态化。当然，运行容器时可以覆盖这个挂载设置。比如：
 
-```bash
+```terminal
 $ docker run -d -v mydata:/data xxxx
 ```
 

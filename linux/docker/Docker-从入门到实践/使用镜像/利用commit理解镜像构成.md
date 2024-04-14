@@ -10,7 +10,7 @@
 
 现在让我们以定制一个 Web 服务器为例子，来讲解镜像是如何构建的。
 
-```bash
+```terminal
 $ docker run --name webserver -d -p 80:80 nginx
 ```
 
@@ -24,7 +24,7 @@ $ docker run --name webserver -d -p 80:80 nginx
 
 现在，假设我们非常不喜欢这个欢迎页面，我们希望改成欢迎 Docker 的文字，我们可以使用 `docker exec` 命令进入容器，修改其内容。
 
-```bash
+```terminal
 $ docker exec -it webserver bash
 root@3729b97e8226:/# echo '<h1>Hello, Docker!</h1>' > /usr/share/nginx/html/index.html
 root@3729b97e8226:/# exit
@@ -41,7 +41,7 @@ exit
 
 我们修改了容器的文件，也就是改动了容器的存储层。我们可以通过 `docker diff` 命令看到具体的改动。
 
-```bash
+```terminal
 $ docker diff webserver
 C /root
 A /root/.bash_history
@@ -67,13 +67,13 @@ A /var/cache/nginx/uwsgi_temp
 
 `docker commit` 的语法格式为：
 
-```bash
+```terminal
 docker commit [选项] <容器ID或容器名> [<仓库名>[:<标签>]]
 ```
 
 我们可以用下面的命令将容器保存为镜像：
 
-```bash
+```terminal
 $ docker commit \
     --author "Tao Wang <twang2218@gmail.com>" \
     --message "修改了默认网页" \
@@ -86,7 +86,7 @@ sha256:07e33465974800ce65751acc279adc6ed2dc5ed4e0838f8b86f0c87aa1795214
 
 我们可以在 `docker image ls` 中看到这个新定制的镜像：
 
-```bash
+```terminal
 $ docker image ls nginx
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 nginx               v2                  07e334659748        9 seconds ago       181.5 MB
@@ -96,7 +96,7 @@ nginx               latest              e43d811ce2f4        4 weeks ago         
 
 我们还可以用 `docker history` 具体查看镜像内的历史记录，如果比较 `nginx:latest` 的历史记录，我们会发现新增了我们刚刚提交的这一层。
 
-```bash
+```terminal
 $ docker history nginx:v2
 IMAGE               CREATED             CREATED BY                                      SIZE                COMMENT
 07e334659748        54 seconds ago      nginx -g daemon off;                            95 B                修改了默认网页
@@ -112,7 +112,7 @@ e43d811ce2f4        4 weeks ago         /bin/sh -c #(nop)  CMD ["nginx" "-g" "da
 
 新的镜像定制好后，我们可以来运行这个镜像。
 
-```bash
+```terminal
 docker run --name web2 -d -p 81:80 nginx:v2
 ```
 

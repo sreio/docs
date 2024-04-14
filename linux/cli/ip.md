@@ -2,7 +2,7 @@
 
 本文提供一些用法示例，详细文档请查看手册： [ip(8) - Linux manual page](https://man7.org/linux/man-pages/man8/ip.8.html) ，或者命令行下运行 man 命令：
 
-```bash
+```terminal
 $ man ip
 ```
 
@@ -13,7 +13,7 @@ ip 命令提供了很多子命令，其中子命令 ip link 用于查询或配�
 
 查看网卡 enp0s8 的详细信息：
 
-```bash
+```terminal
 $ ip link show enp0s8
 3: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
     link/ether 08:00:27:0e:18:e5 brd ff:ff:ff:ff:ff:ff
@@ -24,13 +24,13 @@ $ ip link show enp0s8
 ### 启用禁用
 将网卡 enp0s8 设置为 启动 状态：
 
-```bash
+```terminal
 $ ip link set enp0s8 up
 ```
 
 将网卡 enp0s8 设置为 禁用 状态：
 
-```bash
+```terminal
 $ ip link set enp0s8 down
 ```
 
@@ -40,13 +40,13 @@ $ ip link set enp0s8 down
 
 运行以下命令，为网卡 enp0s8 开启混杂模式：
 
-```bash
+```terminal
 $ sudo ip link set enp0s8 promisc on
 ```
 
 操作完毕后，再次查询网卡状态，将看到 `PROMISC` 标识：
 
-```bash
+```terminal
 $ ip link show enp0s8
 3: enp0s8: <BROADCAST,MULTICAST,PROMISC,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP mode DEFAULT group default qlen 1000
     link/ether 08:00:27:0e:18:e5 brd ff:ff:ff:ff:ff:ff
@@ -56,7 +56,7 @@ $ ip link show enp0s8
 
 子命令 addr 用于查看网络设备的地址信息，比如查看所有网卡的地址：
 
-```bash
+```terminal
 $ ip addr
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -82,6 +82,6 @@ $ ip addr
 
 addr 子命令还能给网络设备设置地址，例如给 enp0s8 网卡设置地址 192.168.56.2 ：
 
-```bash
+```terminal
 $ ip addr add 192.168.56.2/24 dev enp0s8
 ```

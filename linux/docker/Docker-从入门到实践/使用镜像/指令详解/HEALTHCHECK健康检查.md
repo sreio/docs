@@ -36,19 +36,19 @@ HEALTHCHECK --interval=5s --timeout=3s \
 
 使用 `docker build` 来构建这个镜像：
 
-```bash
+```terminal
 $ docker build -t myweb:v1 .
 ```
 
 构建好了后，我们启动一个容器：
 
-```bash
+```terminal
 $ docker run -d --name web -p 80:80 myweb:v1
 ```
 
 当运行该镜像后，可以通过 `docker container ls` 看到最初的状态为 `(health: starting)`：
 
-```bash
+```terminal
 $ docker container ls
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                            PORTS               NAMES
 03e28eb00bd0        myweb:v1            "nginx -g 'daemon off"   3 seconds ago       Up 2 seconds (health: starting)   80/tcp, 443/tcp     web
@@ -56,7 +56,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 在等待几秒钟后，再次 `docker container ls`，就会看到健康状态变化为了 `(healthy)`：
 
-```bash
+```terminal
 $ docker container ls
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                    PORTS               NAMES
 03e28eb00bd0        myweb:v1            "nginx -g 'daemon off"   18 seconds ago      Up 16 seconds (healthy)   80/tcp, 443/tcp     web
@@ -66,7 +66,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 
 为了帮助排障，健康检查命令的输出（包括 `stdout` 以及 `stderr`）都会被存储于健康状态里，可以用 `docker inspect` 来查看。
 
-```bash
+```terminal
 $ docker inspect --format '{{json .State.Health}}' web | python -m json.tool
 {
     "FailingStreak": 0,

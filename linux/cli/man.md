@@ -6,7 +6,7 @@
 
 以查看 socket 系统调用手册为例，命令行下运行：
 
-```bash
+```terminal
 man socket
 ```
 
@@ -17,7 +17,7 @@ man 提供了 less 终端分页器，在文档较长时非常有用。按 j 往�
 
 如果忘记了 man 命令的用法，还可以用 man 查它自己的手册：
 
-```bash
+```terminal
 man man
 ```
 
@@ -39,6 +39,6 @@ Linux 系统的手册通常分为 8 个章节（ section ）：
 
 不同的章节，可能有同名的手册。 printf 就是一例，章节 1 提供 printf 命令的手册；章节 3 提供 printf 库函数的手册。 这种情况下，如果直接运行 man printf ，显示的是命令 printf 的手册。 对于 C 库函数，需要指定章节：
 
-```bash
+```terminal
 man 3 printf
 ```

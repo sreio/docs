@@ -9,17 +9,17 @@ RESTful接口URL的格式：
 > 注：在url网址后面加"?pretty"，会让返回结果以工整的方式展示出来，适用所有操作数据类的url。"?"表示引出条件，"pretty"是条件内容。
 
 ### 通过_source获取指定的字段
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?_source=name,age,other&pretty"
 ```
 
 ### "q=*"表示匹配索引中所有的数据，一般默认只返回前10条数据。
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?q=*&pretty"
 ```
 ### 匹配所有数据，但只返回1个
 > 注：如果size不指定，则默认返回10条数据
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "size": 1
@@ -27,7 +27,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 ```
 
 ###  返回从11到20的数据(索引下标从0开始)
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "from": 10,
@@ -36,7 +36,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 ```
 
 ### 根据字段排序 (根据年龄字段降序)
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "sort": {
@@ -48,7 +48,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 ```
 
 ### 获取指定字段 (查询name、age、create_date字段)
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "_source": [
@@ -60,7 +60,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 ```
 
 ### 字段匹配搜索（年龄等于18）
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "query": {
@@ -72,7 +72,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 ```
 
 ### 模糊匹配搜索（name含有伟所有的数据）
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "query": {
@@ -84,7 +84,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 ```
 
 ### 多个关键字模糊匹配 (name含有[伟、大]所有的数据）
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "query": {
@@ -97,7 +97,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 
 ### 短语关键字模糊匹配 (name含有[伟 大]所有的数据）
 > match_phrase是短语匹配
-```bash
+```terminal
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
   "query": {
@@ -128,7 +128,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 
 
 ### filter指定单个值(term)
-```bash
+```terminal
 # 相当于MySQL的 select * from table1 where age = 18;
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
@@ -145,7 +145,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 ```
 
 ### filter指定多个值(terms)
-```bash
+```terminal
 # 相当于MySQL的 select * from table1 where age in (18,19);
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
@@ -162,7 +162,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 ```
 
 ### must、should、must_not与term结合使用
-```bash
+```terminal
 # 相当于MySQL的 select * from table1 where age = 18 or age = 19 and sex != false;
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
@@ -197,7 +197,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 - `gte` :  >= 大于等于
 - `lte` :  <= 小于等于
 
-```bash
+```terminal
 # 相当于MySQL的 select * from table1 where age >= 10 and age <= 20;
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
@@ -218,7 +218,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 
 ### group
 
-```bash
+```terminal
 # 相当于MySQL的 select age,count(*) from table1 group by age;
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {
@@ -235,7 +235,7 @@ curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: a
 !> elasticsearch 进行排序的时候，我们一般都会排序数字、日期，而文本排序则会报错
 
 聚合这些操作，用单独的数据结构(fielddata)缓存到内存里了，需要单独开启，官方解释在此fielddata
-```bash
+```terminal
 curl -XPOST "http://elasticsearch:9200/table1/_mapping" -H 'Content-Type: application/json' -d'
 {
   "properties": {
@@ -249,7 +249,7 @@ curl -XPOST "http://elasticsearch:9200/table1/_mapping" -H 'Content-Type: applic
 > `table1`: 索引库名称  `name`: 需要开启的字段
 
 ### 安装名字group by，然后计算平均年龄
-```bash
+```terminal
 # 相当于MySQL的 select name,avg(age) from table1 group by name;
 curl -XGET "http://elasticsearch:9200/table1/_search?pretty" -H 'Content-Type: application/json' -d'
 {

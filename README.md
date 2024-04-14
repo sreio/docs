@@ -9,7 +9,7 @@
 - [sreio](http://docs.sreio.com)
 
 # 本地预览
-```bash
+```terminal
 // 全局安装 docsify-cli 工具
 npm i docsify-cli -g
 // docsify serve 启动一个本地服务器

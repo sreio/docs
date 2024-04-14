@@ -6,7 +6,7 @@
 
 当指定了 `ENTRYPOINT` 后，`CMD` 的含义就发生了改变，不再是直接的运行其命令，而是将 `CMD` 的内容作为参数传给 `ENTRYPOINT` 指令，换句话说实际执行时，将变为：
 
-```bash
+```terminal
 <ENTRYPOINT> "<CMD>"
 ```
 
@@ -26,14 +26,14 @@ CMD [ "curl", "-s", "http://myip.ipip.net" ]
 
 假如我们使用 `docker build -t myip .` 来构建镜像的话，如果我们需要查询当前公网 IP，只需要执行：
 
-```bash
+```terminal
 $ docker run myip
 当前 IP：61.148.226.66 来自：北京市 联通
 ```
 
 嗯，这么看起来好像可以直接把镜像当做命令使用了，不过命令总有参数，如果我们希望加参数呢？比如从上面的 `CMD` 中可以看到实质的命令是 `curl`，那么如果我们希望显示 HTTP 头信息，就需要加上 `-i` 参数。那么我们可以直接加 `-i` 参数给 `docker run myip` 么？
 
-```bash
+```terminal
 $ docker run myip -i
 docker: Error response from daemon: invalid header field value "oci runtime error: container_linux.go:247: starting container process caused \"exec: \\\"-i\\\": executable file not found in $PATH\"\n".
 ```
@@ -42,7 +42,7 @@ docker: Error response from daemon: invalid header field value "oci runtime erro
 
 那么如果我们希望加入 `-i` 这参数，我们就必须重新完整的输入这个命令：
 
-```bash
+```terminal
 $ docker run myip curl -s http://myip.ipip.net -i
 ```
 
@@ -58,7 +58,7 @@ ENTRYPOINT [ "curl", "-s", "http://myip.ipip.net" ]
 
 这次我们再来尝试直接使用 `docker run myip -i`：
 
-```bash
+```terminal
 $ docker run myip
 当前 IP：61.148.226.66 来自：北京市 联通
 
@@ -104,7 +104,7 @@ CMD [ "redis-server" ]
 
 可以看到其中为了 redis 服务创建了 redis 用户，并在最后指定了 `ENTRYPOINT` 为 `docker-entrypoint.sh` 脚本。
 
-```bash
+```terminal
 #!/bin/sh
 ...
 # allow the container to be started with `--user`
@@ -118,7 +118,7 @@ exec "$@"
 
 该脚本的内容就是根据 `CMD` 的内容来判断，如果是 `redis-server` 的话，则切换到 `redis` 用户身份启动服务器，否则依旧使用 `root` 身份执行。比如：
 
-```bash
+```terminal
 $ docker run -it redis id
 uid=0(root) gid=0(root) groups=0(root)
 ```

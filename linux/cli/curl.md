@@ -16,7 +16,7 @@
 
 给定一个 URL ， curl 对其发起请求并将响应数据输出到标准输出：
 
-```bash
+```terminal
 $ curl www.baidu.com
 <!DOCTYPE html>
 <!--STATUS OK--><html> <head><meta http-equiv=content-type content=text/html;charset=utf-8><meta http-equiv=X-UA-Compatible content=IE=Edge><meta content=always name=referrer><link rel=stylesheet type=text/css href=http://s1.bdstatic.com/r/www/cache/bdorz/baidu.min.css><title>百度一下，你就知道</title></head> <body link=#0000cc> <div id=wrapper> <div id=head> <div class=head_wrapper> <div class=s_form> <div class=s_form_wrapper> <div id=lg> <img hidefocus=true src=//www.baidu.com/img/bd_logo1.png width=270 height=129> </div> <form id=form name=f action=//www.baidu.com/s class=fm> <input type=hidden name=bdorz_come value=1> <input type=hidden name=ie value=utf-8> <input type=hidden name=f value=8> <input type=hidden name=rsv_bp value=1> <input type=hidden name=rsv_idx value=1> <input type=hidden name=tn value=baidu><span class="bg s_ipt_wr"><input id=kw name=wd class=s_ipt value maxlength=255 autocomplete=off autofocus></span><span class="bg s_btn_wr"><input type=submit id=su value=百度一下 class="bg s_btn"></span> </form> </div> </div> <div id=u1> <a href=http://news.baidu.com name=tj_trnews class=mnav>新闻</a> <a href=http://www.hao123.com name=tj_trhao123 class=mnav>hao123</a> <a href=http://map.baidu.com name=tj_trmap class=mnav>地图</a> <a href=http://v.baidu.com name=tj_trvideo class=mnav>视频</a> <a href=http://tieba.baidu.com name=tj_trtieba class=mnav>贴吧</a> <noscript> <a href=http://www.baidu.com/bdorz/login.gif?login&amp;tpl=mn&amp;u=http%3A%2F%2Fwww.baidu.com%2f%3fbdorz_come%3d1 name=tj_login class=lb>登录</a> </noscript> <script>document.write('<a href="http://www.baidu.com/bdorz/login.gif?login&tpl=mn&u='+ encodeURIComponent(window.location.href+ (window.location.search === "" ? "?" : "&")+ "bdorz_come=1")+ '" name="tj_login" class="lb">登录</a>');</script> <a href=//www.baidu.com/more/ name=tj_briicon class=bri style="display: block;">更多产品</a> </div> </div> </div> <div id=ftCon> <div id=ftConw> <p id=lh> <a href=http://home.baidu.com>关于百度</a> <a href=http://ir.baidu.com>About Baidu</a> </p> <p id=cp>&copy;2017&nbsp;Baidu&nbsp;<a href=http://www.baidu.com/duty/>使用百度前必读</a>&nbsp; <a href=http://jianyi.baidu.com/ class=cp-feedback>意见反馈</a>&nbsp;京ICP证030173号&nbsp; <img src=//www.baidu.com/img/gs.gif> </p> </div> </div> </div> </body> </html>
@@ -28,7 +28,7 @@ $ curl www.baidu.com
 
 调试 Web 服务时，我们经常需要查看 HTTP 响应（ response ）的头部信息，加上 -i 选项即可：
 
-```bash
+```terminal
 $ curl -i www.baidu.com
 HTTP/1.1 200 OK
 Accept-Ranges: bytes
@@ -52,7 +52,7 @@ Set-Cookie: BDORZ=27315; max-age=86400; domain=.baidu.com; path=/
 ## 自动跳转
 百度还有另外一个域名 www.baidu.cn ， 对该域名的访问将跳转到 www.baidu.com ：
 
-```bash
+```terminal
 $ curl -i www.baidu.cn
 HTTP/1.1 302 Found
 Location: http://www.baidu.com/
@@ -67,7 +67,7 @@ curl 请求 www.baidu.cn 后，服务器返回一个 302 跳转。 跳转地址�
 
 实际上，我们可以让 curl 自动跳转，只需加上 -L 选项：
 
-```bash
+```terminal
 $ curl -iL www.baidu.cn
 HTTP/1.1 302 Found
 Location: http://www.baidu.com/
@@ -98,7 +98,7 @@ Set-Cookie: BDORZ=27315; max-age=86400; domain=.baidu.com; path=/
 
 浏览器发起请求时自动将 Cookie 带上，而 curl 则需要通过 --cookie 选项显式指定：
 
-```bash
+```terminal
 $ curl --cookie 'BDORZ=27315' www.baidu.com
 ```
 
@@ -108,7 +108,7 @@ $ curl --cookie 'BDORZ=27315' www.baidu.com
 
 如果需要给请求加上额外头部，可以通过 --header 选项指定：
 
-```bash
+```terminal
 $ curl --header 'Cookie: BDORZ=27315' www.baidu.com
 ```
 
@@ -121,12 +121,12 @@ HTTP 请求方法有多种， curl 通过 -X 选项可以指定。
 
 GET 是 curl 的默认请求方法，上文对百度首页的请求等价于：
 
-```bash
+```terminal
 $ curl -X GET www.baidu.com
 ```
 
 其他方法以此类推：
-```bash
+```terminal
 # 发送POST请求
 $ curl -X POST www.example.com/some/path
 
@@ -138,7 +138,7 @@ $ curl -X DELETE www.example.com/some/path
 
 在 HTTP 中，我们可以通过 请求体 向服务端发送数据。 一般还需要与 Content-Type 头部配合，明确将数据类型告知服务端：
 
-```bash
+```terminal
 $ curl -X POST \
     -d '{"name": "foo", "value": 123}' \
     --header 'Content-Type: application/json' \
@@ -151,7 +151,7 @@ $ curl -X POST \
 
 如果数据是由其他命令生成的，可以在 -d 选项后写 shell 子命令：
 
-```bash
+```terminal
 $ curl -X POST \
     -d `echo '{"name": "foo", "value": 123}'` \
     --header 'Content-Type: application/json' \
@@ -166,7 +166,7 @@ $ curl -X POST \
 如果要发送的数据比较多，直接在命令行中输入肯定不方便。好在我们可以将数据保存在文件中，再通过 --data-binary 指定：
 
 
-```bash
+```terminal
 $ curl -X POST \
     --data-binary /path/to/data.json \
     --header 'Content-Type: application/json' \
@@ -178,7 +178,7 @@ $ curl -X POST \
 
 如果待发送数据由其他命令生成，并通过管道重定向给 curl 命令，它可以直接从标准输入中读取：
 
-```bash
+```terminal
 echo '{"name": "foo", "value": 123}' | curl -X POST \
     --data-binary @- \
     --header 'Content-Type: application/json' \

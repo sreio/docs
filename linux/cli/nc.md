@@ -23,35 +23,35 @@
 
 在`目标服务器`(下文称为 服务端)上，运行 nc 命令，监听需要验证的端口：
 
-```bash
+```terminal
 $ nc -l 12345
 ```
 
 该命令中， `-l` 选项指定监听模式， 12345 为监听端口号。
 
 然后，在另一台机器上(下文称为 客户端)，连接该端口：
-```bash
+```terminal
 $ nc 192.168.56.11 12345
 ```
 
 如果成功连上，则说明端口连通性没问题，端口转发配置是 OK 的。
 
 这时，客户端可以发送一些数据给服务端，输入要发送的内容并按回车：
-```bash
+```terminal
 $ nc 192.168.56.11 12345
 hello world
 ```
 
 一点都不意外，服务端收到了信息，并在屏幕上输出：
 
-```bash
+```terminal
 $ nc -l 12345
 hello world
 ```
 
 服务端也可以发送一些数据给客户端，操作方式是一样的：
 
-```bash
+```terminal
 $ nc -l 12345
 hello world
 something else
@@ -59,7 +59,7 @@ something else
 
 客户端接到数据后，也在屏幕上输出：
 
-```bash
+```terminal
 $ nc 192.168.56.11 12345
 hello world
 something else
@@ -75,12 +75,12 @@ something else
 
 在文件接收服务器上，以监听模式运行 nc 命令，并将标准输出重定向到指定位置：
 
-```bash
+```terminal
 $ nc -l 12345 > test.out
 ```
 在文件发送服务器上，运行 nc 命令连接接收端，并将标准输入重定向到要传输的文件：
 
-```bash
+```terminal
 $ nc 192.168.56.11 12345 < test.in
 ```
 文件传完后， nc 命令自动退出。
@@ -92,7 +92,7 @@ $ nc 192.168.56.11 12345 < test.in
 
 借助 nc 命令，端口扫描非常简单：
 
-```bash
+```terminal
 $ nc -z 192.168.56.11 10-1000
 Connection to 192.168.56.11 port 22 [tcp/ssh] succeeded!
 ```
@@ -100,7 +100,7 @@ Connection to 192.168.56.11 port 22 [tcp/ssh] succeeded!
 
 注意，这里用的词是—— `应该` 。 虽然端口号有约定俗成的惯例，但并不强制。 确定一个端口的真实服务，需要做一些协议上的交互：
 
-```bash
+```terminal
 $ echo 'QUIT' | nc 192.168.56.11 22
 SSH-2.0-OpenSSH_5.3p1 Debian-3ubuntu7.1
 Protocol mismatch.

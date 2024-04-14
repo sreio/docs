@@ -144,7 +144,7 @@ message HelloResponse {
 因为本文我们是使用Go语言做开发，接下来执行下面的命令安装protoc的Go插件：
 
 #### 安装go语言插件：
-```bash
+```terminal
 go install google.golang.org/protobuf/cmd/protoc-gen-go
 ```
 
@@ -152,7 +152,7 @@ go install google.golang.org/protobuf/cmd/protoc-gen-go
 
 #### 安装grpc插件：
 
-```bash
+```terminal
 go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 ```
 
@@ -168,20 +168,20 @@ go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 依次执行以下命令检查一下是否开发环境都准备完毕。
 
 - 确认 protoc 安装完成。
-```bash
+```terminal
 ❯ protoc --version
 libprotoc 3.20.1
 ```
 
 - 确认 protoc-gen-go 安装完成。
-```bash
+```terminal
 ❯ protoc-gen-go --version
 protoc-gen-go v1.28.0
 ```
 > 如果这里提示protoc-gen-go不是可执行的程序，请确保你的 GOPATH 下的 bin 目录在你电脑的环境变量中。
 
 - 确认 protoc-gen-go-grpc 安装完成。
-```bash
+```terminal
 ❯ protoc-gen-go-grpc --version
 protoc-gen-go-grpc 1.2.0
 ```

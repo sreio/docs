@@ -12,7 +12,7 @@
 
 #### 运行
 
-```bash
+```terminal
 go run server.go hub.go data.go connection.go
 ```
 

@@ -15,7 +15,7 @@ Docker 支持以下版本的 [Debian](https://www.debian.org/intro/about) 操作
 
 旧版本的 Docker 称为 `docker` 或者 `docker-engine`，使用以下命令卸载旧版本：
 
-```bash
+```terminal
 $ sudo apt-get remove docker \
                docker-engine \
                docker.io
@@ -25,7 +25,7 @@ $ sudo apt-get remove docker \
 
 由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
 
-```bash
+```terminal
 $ sudo apt-get update
 
 $ sudo apt-get install \
@@ -40,7 +40,7 @@ $ sudo apt-get install \
 
 为了确认所下载软件包的合法性，需要添加软件源的 GPG 密钥。
 
-```bash
+```terminal
 $ curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/debian/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 
 
@@ -52,7 +52,7 @@ $ curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/debian/gpg | sudo gpg --
 
 > 在一些基于 Debian 的 Linux 发行版中 `$(lsb_release -cs)` 可能不会返回 Debian 的版本代号，例如 [Kail Linux](https://www.kali.org/docs/policy/kali-linux-relationship-with-debian/)、 [BunsenLabs Linux](https://www.bunsenlabs.org/)。在这些发行版中我们需要将下面命令中的 `$(lsb_release -cs)` 替换为 https://mirrors.aliyun.com/docker-ce/linux/debian/dists/ 中支持的 Debian 版本代号，例如 `buster`。
 
-```bash
+```terminal
 $ echo \
   "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://mirrors.aliyun.com/docker-ce/linux/debian \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -71,7 +71,7 @@ $ echo \
 
 更新 apt 软件包缓存，并安装 `docker-ce`。
 
-```bash
+```terminal
 $ sudo apt-get update
 
 $ sudo apt-get install docker-ce docker-ce-cli containerd.io
@@ -83,7 +83,7 @@ $ sudo apt-get install docker-ce docker-ce-cli containerd.io
 
 > 若你想安装测试版的 Docker, 请从 test.docker.com 获取脚本
 
-```bash
+```terminal
 # $ curl -fsSL test.docker.com -o get-docker.sh
 $ curl -fsSL get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh --mirror Aliyun
@@ -94,7 +94,7 @@ $ sudo sh get-docker.sh --mirror Aliyun
 
 ## 启动 Docker
 
-```bash
+```terminal
 $ sudo systemctl enable docker
 $ sudo systemctl start docker
 ```
@@ -105,13 +105,13 @@ $ sudo systemctl start docker
 
 建立 `docker` 组：
 
-```bash
+```terminal
 $ sudo groupadd docker
 ```
 
 将当前用户加入 `docker` 组：
 
-```bash
+```terminal
 $ sudo usermod -aG docker $USER
 ```
 
@@ -119,7 +119,7 @@ $ sudo usermod -aG docker $USER
 
 ## 测试 Docker 是否安装正确
 
-```bash
+```terminal
 $ docker run --rm hello-world
 
 Unable to find image 'hello-world:latest' locally

@@ -6,7 +6,7 @@
 
 ifconfig 不带任何参数即可查询当前所有已 启用（ up ）网卡的状态：
 
-```bash
+```terminal
 $ ifconfig
 eth1      Link encap:Ethernet  HWaddr 08:00:27:af:9e:56
                   inet addr:192.168.56.11  Bcast:192.168.56.255  Mask:255.255.255.0
@@ -32,7 +32,7 @@ lo        Link encap:Local Loopback
 带上 -a 参数即查询所有网卡，包括 禁用 的（ down ）：
 
 
-```bash
+```terminal
 $ ifconfig -a
 eth0      Link encap:Ethernet  HWaddr 08:00:27:aa:87:65
                   inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
@@ -63,7 +63,7 @@ lo        Link encap:Local Loopback
 
 
 ## 带上网卡名则查询指定网卡：
-```bash
+```terminal
 $ ifconfig eth0
 eth0      Link encap:Ethernet  HWaddr 08:00:27:aa:87:65
                   inet addr:10.0.2.15  Bcast:10.0.2.255  Mask:255.255.255.0
@@ -76,13 +76,13 @@ eth0      Link encap:Ethernet  HWaddr 08:00:27:aa:87:65
 
 ## 启停
 启用网卡 eth0 ：
-```bash
+```terminal
 $ ifconfig eth0 up
 ```
 
 ## 禁用网卡 eth0 ：
 
-```bash
+```terminal
 $ ifconfig eth0 down
 ```
 
@@ -90,7 +90,7 @@ $ ifconfig eth0 down
 
 ### 开启混杂（ promisc ）模式：
 
-```bash
+```terminal
 $ ifconfig eth0 promisc
 ```
 
@@ -104,18 +104,18 @@ $ ifconfig eth0 -promisc
 
 ### 配置度量值（ metric ）：
 
-```bash
+```terminal
 $ ifconfig eth0 metric 1
 ```
 
 ### 配置 MTU ：
 
-```bash
+```terminal
 $ ifconfig eth0 mtu 1500
 ```
 
 ### 配置 IP 地址以及掩码（可以分开）：
 
-```bash
+```terminal
 $ ifconfig eth0 192.168.5.1 netmask 255.255.255.0
 ```

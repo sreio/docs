@@ -8,7 +8,7 @@ Dockerfile 是一个文本文件，其内包含了一条条的 **指令(Instruct
 
 在一个空白目录中，建立一个文本文件，并命名为 `Dockerfile`：
 
-```bash
+```terminal
 $ mkdir mynginx
 $ cd mynginx
 $ touch Dockerfile
@@ -108,7 +108,7 @@ RUN set -x; buildDeps='gcc libc6-dev make wget' \
 
 在 `Dockerfile` 文件所在目录执行：
 
-```bash
+```terminal
 $ docker build -t nginx:v3 .
 Sending build context to Docker daemon 2.048 kB
 Step 1 : FROM nginx
@@ -124,7 +124,7 @@ Successfully built 44aa4490ce2c
 
 这里我们使用了 `docker build` 命令进行镜像构建。其格式为：
 
-```bash
+```terminal
 docker build [选项] <上下文路径/URL/->
 ```
 
@@ -154,7 +154,7 @@ COPY ./package.json /app/
 
 如果观察 `docker build` 输出，我们其实已经看到了这个发送上下文的过程：
 
-```bash
+```terminal
 $ docker build -t nginx:v3 .
 Sending build context to Docker daemon 2.048 kB
 ...
@@ -176,7 +176,7 @@ Sending build context to Docker daemon 2.048 kB
 
 或许你已经注意到了，`docker build` 还支持从 URL 构建，比如可以直接从 Git repo 中构建：
 
-```bash
+```terminal
 # $env:DOCKER_BUILDKIT=0
 # export DOCKER_BUILDKIT=0
 
@@ -197,7 +197,7 @@ Successfully built 038ad4142d2b
 
 ### 用给定的 tar 压缩包构建
 
-```bash
+```terminal
 $ docker build http://server/context.tar.gz
 ```
 
@@ -205,13 +205,13 @@ $ docker build http://server/context.tar.gz
 
 ### 从标准输入中读取 Dockerfile 进行构建
 
-```bash
+```terminal
 docker build - < Dockerfile
 ```
 
 或
 
-```bash
+```terminal
 cat Dockerfile | docker build -
 ```
 
@@ -219,7 +219,7 @@ cat Dockerfile | docker build -
 
 ### 从标准输入中读取上下文压缩包进行构建
 
-```bash
+```terminal
 $ docker build - < context.tar.gz
 ```
 

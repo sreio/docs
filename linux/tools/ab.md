@@ -9,13 +9,13 @@ ab 的功能非常强大，可以发起各种 HTTP 请求，并且支持设置 �
 
 Web 应用一般部署在 Linux 服务器上，因此主流 Linux 发行版软件包都提供了 Apache 工具 ab 。以 Ubuntu 为例，我们只需按照 apache2-utils 包，即可得到 ab 命令：
 
-```bash
+```terminal
 $ sudo apt install apache2-utils
 ```
 
 安装完毕后，我们可以通过 -V 选项查看 ab 的版本，确认它已经就绪：
 
-```bash
+```terminal
 $ ab -V
 This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -25,7 +25,7 @@ Licensed to The Apache Software Foundation, http://www.apache.org/
 ## 帮助文档
 与大多数 Unix 命令一样，我们可以通过 -h 选项，查看 ab 命令的帮助文档：
 
-```bash
+```terminal
 $ ab -h
 Usage: ab [options] [http[s]://]hostname[:port]/path
 Options are:
@@ -83,7 +83,7 @@ Options are:
 
 我在本地跑了一个用 Python 编写的 Web 服务，现在拿它来练练手：
 
-```bash
+```terminal
 $ ab -n 10000 -c 100 http://127.0.0.1:8080/
 This is ApacheBench, Version 2.3 <$Revision: 1706008 $>
 Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
@@ -176,13 +176,13 @@ Percentage of the requests served within a certain time (ms)
 
 将需要发送的表单数据保存在一个文件中，假设文件名为 form.txt ，格式如下：
 
-```bash
+```terminal
 key=foo&value=123
 ```
 
 指定 -p 选项让 ab 发送该文件；指定 -T 选项让 ab 设置正确的 Content-Type 头部：
 
-```bash
+```terminal
 $ ab -n 1 -c 1 -p form.txt -T application/x-www-form-urlencoded 'http://127.0.0.1:8080/test/json'
 ```
 
@@ -190,7 +190,7 @@ $ ab -n 1 -c 1 -p form.txt -T application/x-www-form-urlencoded 'http://127.0.0.
 
 将需要发送的 JSON 数据保存在一个文件中，假设文件名为 data.json ，格式如下：
 
-```bash
+```terminal
 {
     "key": "foo",
     "value": 123
@@ -199,6 +199,6 @@ $ ab -n 1 -c 1 -p form.txt -T application/x-www-form-urlencoded 'http://127.0.0.
 
 指定 -p 选项让 ab 发送该文件；指定 -T 选项让 ab 设置正确的 Content-Type 头部：
 
-```bash
+```terminal
 $ ab -n 1 -c 1 -p data.json -T application/json 'http://127.0.0.1:8080/test/json'
 ```

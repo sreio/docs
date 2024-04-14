@@ -8,7 +8,7 @@
 - GitHub地址：https://github.com/go-gorm/gorm
 
 ## 安装
-```bash
+```terminal
 go get -u gorm.io/gorm
 go get -u gorm.io/driver/sqlite
 ```

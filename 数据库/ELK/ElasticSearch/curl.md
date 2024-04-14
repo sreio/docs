@@ -1,5 +1,5 @@
 ## 索引库
-```bash
+```terminal
 # 创建索引库
 curl -XPUT "http://elasticsearch:9200/table1" -H 'Content-Type: application/json' -d'
 {
@@ -52,7 +52,7 @@ curl -XDELETE "http://elasticsearch:9200/table1"
 ```
 
 ## 文档
-```bash
+```terminal
 # 创建文档
 curl -XPOST "http://elasticsearch:9200/table1/_doc/1" -H 'Content-Type: application/json' -d'
 {

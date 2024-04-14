@@ -14,7 +14,7 @@
 
 ### 安装
 
-```bash
+```terminal
 docker pull elasticsearch:7.1.1
 docker pull kibana:7.1.1
 docker pull logstash:7.1.1

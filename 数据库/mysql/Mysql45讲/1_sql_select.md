@@ -17,7 +17,7 @@ select * from T where ID=10；
 
 第一步，你会先连接到这个数据库上，这时候接待你的就是连接器。`连接器`负责跟客户端建立连 接、获取权限、维持和管理连接。连接命令一般是这么写的:
 
-```bash
+```terminal
 mysql -h$ip -P$port -u$user -p  
 
 // 完成经典的TCP握手后

@@ -204,7 +204,7 @@
   - [ELK](/数据库/ELK/README.md)
     - Elasticsearch
       - [初识es](/数据库/ELK/ElasticSearch/readme.md)
-      - [kibana操作]](/数据库/ELK/ElasticSearch/dsl.md)
+      - [kibana操作](/数据库/ELK/ElasticSearch/dsl.md)
       - [curl操作](/数据库/ELK/ElasticSearch/curl.md)
       - [其他查询curl操作](/数据库/ELK/ElasticSearch/other.md)
       - [其他常用操作](/数据库/ELK/ElasticSearch/used.md)

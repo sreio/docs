@@ -5,7 +5,7 @@
 
 抓取经过 enp0s3 网卡 80 端口的报文：
 
-```bash
+```terminal
 $ tcpdump -ni enp0s3 port 80
 ```
 
@@ -19,13 +19,13 @@ $ tcpdump -ni enp0s3 port 80
 
 ### 嗅探环回流量， -i 指定环回设备 lo ：
 
-```bash
+```terminal
 $ tcpdump -ni lo
 ```
 
 ### 嗅探所有网络流量， -i 指定任意网络设备，为特殊关键字 any ：
 
-```bash
+```terminal
 $ tcpdump -ni any
 ```
 
@@ -37,18 +37,18 @@ $ tcpdump -ni any icmp
 
 ### 通过表达式过滤给定主机( IP 地址)的流量：
 
-```bash
+```terminal
 $ tcpdump -ni any host 10.0.1.2
 ```
 
 ### 过滤给定主机 80 端口的流量：
 
-```bash
+```terminal
 $ tcpdump -ni any host 10.0.1.2 and port 80
 ```
 
 ### 匹配 TCP 分组标志位，以 SYN 为例：
 
-```bash
+```terminal
 $ tcpdump -ni any port 443 and "tcp[tcpflags] & tcp-syn != 0"
 ```

@@ -46,28 +46,28 @@ server {
 <a name="2"></a>
 ## 2.统计服务器所有url被请求的数量
 
-```bash
+```terminal
 #统计其他端口时：netstat -pnt | grep :xx | wc -l
 netstat -pnt | grep :443 | wc -l
 ```
 <a name="3"></a>
 ## 3.查找请求数前20个IP
 
-```bash
+```terminal
 #服务器被恶意高频访问时可以用到
 netstat -ant |awk '/:443/{split($5,ip,":");++A[ip[1]]}END{for(i in A) print A[i],i}' |sort -rn|head -n20
 ```
 <a name="4"></a>
 ## 4.统计文件中某个字符串出现的次数
 
-```bash
+```terminal
 #如统计文件api_error.log中error关键词出现的次数
 grep -o 'error' /www/payment/runtime/logs/api_error.log | wc -l
 ```
 <a name="5"></a>
 ## 5.监听文件
 
-```bash
+```terminal
 #可以监听整个文件，也可根据关键词监听
 cd /www/payment/runtime/logs/
 
@@ -78,7 +78,7 @@ tail -Nf xxx.log  #N为要查看的、最近多少条日志，例如tail -100f x
 ```
 <a name="6"></a>
 ## 6.查看文件大小
-```bash
+```terminal
 #以下是本人开发中常用到的
 一、du命令
 du命令是查看使用空间的，但是与df命令不同的是Linux du命令是对文件和目录磁盘使用的空间的查看，还是和df命令有一些区别的。
@@ -104,7 +104,7 @@ ls -lh ljl.txt
 <a name="7"></a>
 ## 7.查看ip来源地
 
-```bash
+```terminal
 #使用这个是为了查看异常登录地址
 yum -y install whois
 whois 119.53.224.203
@@ -112,13 +112,13 @@ whois 119.53.224.203
 <a name="8"></a>
 ## 8. 查看磁盘使用情况
 
-```bash
+```terminal
 df -h
 ```
 <a name="9"></a>
 ## 9.创建软链接
 
-```bash
+```terminal
 ln -s [源文件或目录] [目标文件或目录]
 
 例如：创建软链时，先进入根目录的bin目录下
@@ -135,7 +135,7 @@ ln -s /usr/local/nginx/sbin/nginx nginx
 <a name="10"></a>
 ## 10.查看是否监听9000端口（其他端口雷同）
 
-```bash
+```terminal
 netstat -ant | grep 9000
 ```
 <a name="11"></a>
@@ -192,7 +192,7 @@ server {
 
 > 紧接着上面的 12.Nginx配置ssl 中 server_name 提到的给项目开端口
 
-```bash
+```terminal
 #这里讲到的是CentOS7,CentOS7的防火墙和CentOS6不一样了， CentOS 6 系列中的 iptables 相关命令不能用了，Centos7中使用firewalld代替了原来的iptables。
 
 #停止firewall
@@ -239,7 +239,7 @@ firewall-cmd --add-port=80/tcp --permanent     ##永久添加80端口
 <a name="14"></a>
 ## 14.Linux之 cat 命令
 
-```bash
+```terminal
 #是不是以为cat只有 cat filename 这个命令？
 
 #不不不，它还可以更骚气。接下来介绍一下cat命令常用又不常用的命令
@@ -369,7 +369,7 @@ upstream myapp1 {
 <a name="16"></a>
 ## 16. Linux之 locate
 
-```bash
+```terminal
 #命令简介
 locate(locate) 命令用来查找文件或目录。 要比find -name快得多，原因在于它不搜索具体目录，而是搜索一个数据库/var/lib/mlocate/mlocate.db 。这个数据库中含有本地所有文件信息。Linux系统自动创建这个数据库, 并且每天自动更新一次，因此，我们在用whereis和locate 查找文件时，有时会找到已经被删除的数据，或者刚刚建立文件，却无法查找到，原因就是因为数据库文件没有被更新。为了避免这种情况，可以在使用locate之前，先使用updatedb命令，手动更新数据库。整个locate工作其实是由四部分组成的:
 

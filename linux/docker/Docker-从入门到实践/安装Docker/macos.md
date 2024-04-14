@@ -10,7 +10,7 @@
 
 [Homebrew](https://brew.sh/) 的 [Cask](https://github.com/Homebrew/homebrew-cask) 已经支持 Docker Desktop for Mac，因此可以很方便的使用 Homebrew Cask 来进行安装：
 
-```bash
+```terminal
 $ brew install --cask docker
 ```
 
@@ -40,14 +40,14 @@ $ brew install --cask docker
 
 之后，你可以在终端通过命令检查安装后的 Docker 版本。
 
-```bash
+```terminal
 $ docker --version
 Docker version 20.10.0, build 7287ab3
 ```
 
 如果 `docker version`、`docker info` 都正常的话，可以尝试运行一个 [Nginx 服务器](https://hub.docker.com/_/nginx/)：
 
-```bash
+```terminal
 $ docker run -d -p 80:80 --name webserver nginx
 ```
 
@@ -57,7 +57,7 @@ $ docker run -d -p 80:80 --name webserver nginx
 
 要停止 Nginx 服务器并删除执行下面的命令：
 
-```bash
+```terminal
 $ docker stop webserver
 $ docker rm webserver
 ```

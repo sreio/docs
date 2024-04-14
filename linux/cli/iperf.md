@@ -5,7 +5,7 @@
 ### 服务端
 在 RedServer 服务器上，运行 iperf 命令启动服务端：
 
-```bash
+```terminal
 fasion@RedServer:~$ iperf -s
 ------------------------------------------------------------
 Server listening on TCP port 5001
@@ -18,7 +18,7 @@ TCP window size: 85.3 KByte (default)
 ### 客户端
 在 BlueServer 服务器上，运行 iperf 命令启动客户端：
 
-```bash
+```terminal
 fasionBlueServer:~$ iperf -c RedServer
 ------------------------------------------------------------
 Client connecting to RedServer, TCP port 5001
@@ -32,7 +32,7 @@ TCP window size: 85.0 KByte (default)
 ### 测试报告
 测试完成后， iperf 向屏幕输出测试报告：
 
-```bash
+```terminal
 fasionBlueServer:~$ iperf -c RedServer
 ------------------------------------------------------------
 Client connecting to RedServer, TCP port 5001

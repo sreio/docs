@@ -245,7 +245,7 @@ message UserList {
 
 #### 执行protoc命令生成相对应的文件
 
-```bash
+```terminal
 #当前命令执行路径：grpc_study\grpc_message\proto
 protoc --go_out=. --go-grpc_out=. .\user.proto
 ```

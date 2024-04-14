@@ -11,7 +11,7 @@
 
 
 ## 安装
-```bash
+```terminal
 go get github.com/redis/go-redis/v9
 ```
 

@@ -18,7 +18,7 @@
 
 请首先执行以下命令，查看是否在 `docker.service` 文件中配置过镜像地址。
 
-```bash
+```terminal
 $ systemctl cat docker | grep '\-\-registry\-mirror'
 ```
 
@@ -39,7 +39,7 @@ $ systemctl cat docker | grep '\-\-registry\-mirror'
 
 之后重新启动服务。
 
-```bash
+```terminal
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
@@ -74,7 +74,7 @@ $ sudo systemctl restart docker
 
 执行 `$ docker info`，如果从结果中看到了如下内容，说明配置成功。
 
-```bash
+```terminal
 Registry Mirrors:
  https://hub-mirror.c.163.com/
 ```
@@ -87,7 +87,7 @@ Registry Mirrors:
 
 一般情况下有如下对应关系：
 
-```bash
+```terminal
 # $ docker pull k8s.gcr.io/xxx
 
 $ docker pull registry.cn-hangzhou.aliyuncs.com/google_containers/xxx
