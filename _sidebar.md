@@ -53,6 +53,7 @@
       - [附录十一：ServiceProvider类的注册和引导](/编程语言/php/穿透laravel/附录十一：ServiceProvider类的注册和引导/README.md)
     - 使用案例
       - [laravel-es](/编程语言/php/demo/laravel-es.md)
+      - [laravel-rabbitMQ](/编程语言/php/demo/laravel-rabbitMQ.md)
   - Golang 基础入门
     - Go基础
       - [命令](/编程语言/Golang基础入门/go基础/命令.md)
@@ -213,6 +214,35 @@
     - [filebeat](/数据库/ELK/filebeat/README.md)
 - 消息队列
   - [初识消息队列](/消息队列/初识消息队列.md)
+  - RabbitMQ教程
+    - [简介](/消息队列/RabbitMQ教程/README.md)
+    - [安装部署](/消息队列/RabbitMQ教程/安装部署.md)
+    - 工作原理
+      - [1.核心概念](/消息队列/RabbitMQ教程/工作原理/1.核心概念.md)
+      - [2.工作模式-简单队列](/消息队列/RabbitMQ教程/工作原理/2.工作模式-简单队列.md)
+      - [3.工作模式-Work队列](/消息队列/RabbitMQ教程/工作原理/3.工作模式-Work队列.md)
+      - [4.工作模式-发布订阅](/消息队列/RabbitMQ教程/工作原理/4.工作模式-发布订阅.md)
+      - [5.工作模式-路由模式](/消息队列/RabbitMQ教程/工作原理/5.工作模式-路由模式.md)
+      - [6.工作模式-主题模式](/消息队列/RabbitMQ教程/工作原理/6.工作模式-主题模式.md)
+    - golang
+      - [1.快速入门](/消息队列/RabbitMQ教程/golang/快速入门.md)
+      - [2.work模式](/消息队列/RabbitMQ教程/golang/work模式.md)
+      - [3.发布订阅模式](/消息队列/RabbitMQ教程/golang/发布订阅模式.md)
+      - [4.路由模式](/消息队列/RabbitMQ教程/golang/路由模式.md)
+      - [5.主题模式](/消息队列/RabbitMQ教程/golang/主题模式.md)
+    - php
+      - [1.快速入门](/消息队列/RabbitMQ教程/php/快速入门.md)
+      - [2.work模式](/消息队列/RabbitMQ教程/php/work模式.md)
+      - [3.发布订阅模式](/消息队列/RabbitMQ教程/php/发布订阅模式.md)
+      - [4.路由模式](/消息队列/RabbitMQ教程/php/路由模式.md)
+      - [5.主题模式](/消息队列/RabbitMQ教程/php/主题模式.md) 
+    - 高级专题
+      - [1.消息持久化](/消息队列/RabbitMQ教程/高级专题/消息持久化.md)
+      - [2.消息顺序性](/消息队列/RabbitMQ教程/高级专题/消息顺序性.md)
+      - [3.优先级队列](/消息队列/RabbitMQ教程/高级专题/优先级队列.md)
+      - [4.死信队列](/消息队列/RabbitMQ教程/高级专题/死信队列.md)
+      - [5.消息过期时间](/消息队列/RabbitMQ教程/高级专题/消息过期时间.md)
+      - [6.延迟队列](/消息队列/RabbitMQ教程/高级专题/延迟队列.md)
 - 网络协议
   - [ipv4与ipv6](/网络协议/ipv4_ipv6.md)
   - HTTP
