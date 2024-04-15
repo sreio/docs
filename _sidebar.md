@@ -211,6 +211,8 @@
     - [Kibana](/数据库/ELK/kibana/README.md)
     - [logstash](/数据库/ELK/logstash/README.md)
     - [filebeat](/数据库/ELK/filebeat/README.md)
+- 消息队列
+  - [初识消息队列](/消息队列/初识消息队列.md)
 - 网络协议
   - [ipv4与ipv6](/网络协议/ipv4_ipv6.md)
   - HTTP
@@ -218,6 +220,13 @@
     - [HTTP状态码](/网络协议/HTTP/http_status_code.md)    
     - [content-type](/网络协议/HTTP/http_content_type.md)    
     - [HTTP2](/网络协议/HTTP/http2.md) 
+- 数据结构与算法
+  - [Hello算法](/数据结构与算法/Hello算法/README.md)  
+  - 数据结构与算法案例
+    - [交换两个变量值](/数据结构与算法/数据结构与算法案例/A_swap_B.md) 
+- 其他
+  - 用户鉴权
+    - [jwt](/其他/用户鉴权/jwt.md)
 - Linux
   - [常见命令总结](/linux/cli/README.md)
     - [man](/linux/cli/man.md)
@@ -279,16 +288,3 @@
         - [构建多种系统架构支持的 Docker 镜像](/linux/docker/Docker-从入门到实践/使用镜像/构建多种系统架构支持的Docker镜像.md)
         - [其它制作镜像的方式](/linux/docker/Docker-从入门到实践/使用镜像/其它制作镜像的方式.md)
         - [镜像的实现原理](/linux/docker/Docker-从入门到实践/使用镜像/镜像的实现原理.md)
-
-- 数据结构与算法
-  - [Hello算法](/数据结构与算法/Hello算法/README.md)  
-  - 数据结构与算法案例
-    - [交换两个变量值](/数据结构与算法/数据结构与算法案例/A_swap_B.md) 
-
-- 消息队列
-  - [初识消息队列](/消息队列/初识消息队列.md)
-
-
-- 其他
-  - 用户鉴权
-    - [jwt](/其他/用户鉴权/jwt.md)
