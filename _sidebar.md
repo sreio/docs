@@ -290,6 +290,7 @@
 - 其他
   - 用户鉴权
     - [jwt](/其他/用户鉴权/jwt.md)
+  - [如何选择开源协议?](/其他/如何选择开源协议.md)
 - Linux
   - [常见命令总结](/linux/cli/README.md)
     - [man](/linux/cli/man.md)
