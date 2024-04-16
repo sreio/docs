@@ -241,6 +241,10 @@
     - [Kibana](/数据库/ELK/kibana/README.md)
     - [logstash](/数据库/ELK/logstash/README.md)
     - [filebeat](/数据库/ELK/filebeat/README.md)
+  - etcd
+    - [etcd简介](/数据库/etcd/README.md)
+    - [命令行操作](/数据库/etcd/命令行操作.md)
+    - [go-etcd操作](/数据库/etcd/curd.md)
 - 消息队列
   - [初识消息队列](/消息队列/初识消息队列.md)
   - RabbitMQ教程
