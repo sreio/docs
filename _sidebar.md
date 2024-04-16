@@ -6,6 +6,8 @@
     - [Redis](/面试宝典/数据库/redis.md)
   - [服务器](/面试宝典/服务器/README.md)
     - [nginx](/面试宝典/服务器/nginx.md)
+  - 消息队列
+    - [RabbitMQ](/面试宝典/消息队列/rabbitmq.md)
   - [其他](/面试宝典/其他/README.md)
     - [http](/面试宝典/其他/http.md)
     - [session和cookie](/面试宝典/其他/session.md)
