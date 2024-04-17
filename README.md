@@ -6,7 +6,7 @@
 
 - [srrio](https://docs.srrio.com)
 - [github](https://sreio.github.io/docs/)
-- [sreio](http://docs.sreio.com)
+- [sreio](https://www.sreio.com/)
 
 ### 本地预览
 ```terminal
