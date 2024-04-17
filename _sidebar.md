@@ -306,6 +306,16 @@
       - [4.死信队列](/消息队列/RabbitMQ教程/高级专题/死信队列.md)
       - [5.消息过期时间](/消息队列/RabbitMQ教程/高级专题/消息过期时间.md)
       - [6.延迟队列](/消息队列/RabbitMQ教程/高级专题/延迟队列.md)
+  - Kafka
+    - [kafka简介](/消息队列/Kafka/README.md)
+    - [安装部署](/消息队列/Kafka/安装部署.md)
+    - golang
+      - [kafka-go简介](/消息队列/Kafka/golang/README.md)
+      - [安装以及初始化连接](/消息队列/Kafka/golang/start.md)
+      - [Connection](/消息队列/Kafka/golang/Connection.md)
+      - [Reader](/消息队列/Kafka/golang/Reader.md)
+      - [Writer](/消息队列/Kafka/golang/Writer.md)
+      - [other](/消息队列/Kafka/golang/other.md)
 - 网络协议
   - [ipv4与ipv6](/网络协议/ipv4_ipv6.md)
   - HTTP
