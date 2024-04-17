@@ -4,34 +4,34 @@ mongo shell通过db.collection.bulkWrite()函数执行批量操作。
 
 ?>提示： 批量操作，经常使用在批量同步数据场景。
 
-### bulkWrite函数支持的写操作
+## bulkWrite函数支持的写操作
 
 批量操作支持下面写操作自由组合。
-```markdown
-insertOne - 插入一个文档
-updateOne - 更新一个文档
-updateMany - 更新一批文档
-replaceOne - 替换一个文档
-deleteOne - 删除一个文档
-deleteMany - 删除一批文档
-```
 
-### 语法格式
-```markdown
+- `insertOne` - 插入一个文档
+- `updateOne` - 更新一个文档
+- `updateMany` - 更新一批文档
+- `replaceOne` - 替换一个文档
+- `deleteOne` - 删除一个文档
+- `deleteMany` - 删除一批文档
+
+
+## 语法格式
+```terminal
 db.collection.bulkWrite(
    [ <operation 1>, <operation 2>, ... ],
 )
 ```
 说明：
-```markdown
-operation - 代表写操作配置
-bulkWrite接收一个写操作数组。
-```
 
-### 例子
+- operation - 代表写操作配置
+- bulkWrite接收一个写操作数组。
+
+
+## 例子
 
 下面看一个综合里面，批量执行一批文档写操作。
-```markdown
+```terminal
 db.inventory.bulkWrite(
       [
          // 插入一个文档

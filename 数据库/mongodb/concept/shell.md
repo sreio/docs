@@ -5,14 +5,17 @@ mongo shell是MongoDB的交互式命令窗口。可以使用mongo shell操作Mon
 
 ### 启动mongo Shell并连接到MongoDB
 - 连接本地MongoDB Server ，直接输入mongo命令，即可进入Mongo Shell
-        mongo
+  
+```terminal
+mongo
+```
 
 - 使用默认的地址连接MongoDB Serve
 
 ?> 提示：如果提示找不到mongo命令，那说明安装MongoDB的时候，没有将MongoDB的bin目录添加到PATH环境变量，具体可以参考前面的安装章节。
 
 - 成功则输出如下信息
-```console
+```terminal
 MongoDB shell version v4.4.5
 connecting to: mongodb://127.0.0.1:27017/?compressors=disabled&gssapiServiceName=mongodb
 Implicit session: session { "id" : UUID("b11bfc3e-e70c-42b1-9bfc-5d9218f2d232") }
@@ -24,12 +27,12 @@ MongoDB server version: 4.4.5
 - 进入docker容器中的mongo shell
 
     如果，我们使用docker安装MongoDB的容器名字叫做mongo，则使用下面命令可以直接进入mongo shell
-```console
+```terminal
 docker exec -it mongo mongo
 ```
 
 - 连接远程MongoDB Server
-```console
+```terminal
 mongo --username root --password  --host mongodb0.examples.com --port 28015
 ```
     - 参数说明：
@@ -40,17 +43,17 @@ mongo --username root --password  --host mongodb0.examples.com --port 28015
 
 ### mongo shell的基本命令
 - 显示当前使用的数据库名
-```console
+```terminal
     db
 ```
 
 - 切换到其他数据库
-```console
+```terminal
     use 数据库名
 ```
 
 - mongo shell操作例子
-```console
+```terminal
     // 切换数据库
     use myNewDatabase
 
@@ -66,6 +69,6 @@ mongo --username root --password  --host mongodb0.examples.com --port 28015
 更多的mongo Shell操作命令，后续章节会有介绍。
 
 - 退出mongo shell
-```console
+```terminal
     <ctrl-c></ctrl-c>
 ```
