@@ -4,7 +4,7 @@
 
 ### 在线地址
 
-- [srrio](https://docs.srrio.com)
+- [srrio](https://docs.srrio.co)
 - [github](https://sreio.github.io/docs/)
 - [sreio](https://www.sreio.com/)
 
