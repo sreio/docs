@@ -247,16 +247,34 @@
     - [go-etcd操作](/数据库/etcd/curd.md)
   - [mongodb](/数据库/mongodb/README.md)
     - 概念&工具
-      - [1.MongoDB数据模型](/数据库/mongodb/concept/data.md)
+      - [1.MongoDB 数据模型](/数据库/mongodb/concept/data.md)
       - [2.Mongo Shell](/数据库/mongodb/concept/shell.md)
       - [3.MongoDB Compass](/数据库/mongodb/concept/compass.md)
     - MongoDB CRUD操作
-      - [1.MongoDB数据库操作](/数据库/mongodb/curd/db.md)
+      - [1.MongoDB 数据库操作](/数据库/mongodb/curd/db.md)
       - [2.MongoDB 插入文档](/数据库/mongodb/curd/insert.md)
       - [3.MongoDB 条件查询](/数据库/mongodb/curd/select.md)
-      - [4.MongoDB更新文档](/数据库/mongodb/curd/update.md)
-      - [5.MongoDB删除文档](/数据库/mongodb/curd/delete.md)
-      - [6.MongoDB批量操作文档](/数据库/mongodb/curd/batch.md)
+      - [4.MongoDB 更新文档](/数据库/mongodb/curd/update.md)
+      - [5.MongoDB 删除文档](/数据库/mongodb/curd/delete.md)
+      - [6.MongoDB 批量操作文档](/数据库/mongodb/curd/batch.md)
+    - MongoDB查询详解
+      - [1.MongoDB 选择文档字段](/数据库/mongodb/query/field.md)
+      - [2.MongoDB 分页查询](/数据库/mongodb/query/page.md)
+      - [3.MongoDB 查询结果排序](/数据库/mongodb/query/order.md)
+      - [4.MongoDB 条件查询—比较运算](/数据库/mongodb/query/compare.md)
+      - [5.MongoDB 查询条件—逻辑操作符](/数据库/mongodb/query/logic.md)
+      - [6.MongoDB 查询条件-数组操作符](/数据库/mongodb/query/array.md) 
+      - [7.MongoDB 全文搜索](/数据库/mongodb/query/search.md) 
+    - MongoDB的聚合分析
+      - [1.MongoDB 聚合管道(Aggregation Pipeline)](/数据库/mongodb/polymerization/pipeline.md)
+      - [2.MongoDB 统计分析（Aggregation）](/数据库/mongodb/polymerization/statistics.md)
+    - MongoDB地理位置查询
+      - [1.MongoDB 地理数据模型](/数据库/mongodb/position/model.md)
+      - [2.MongoDB 按距离搜索 ](/数据库/mongodb/position/distance.md)
+      - [3.MongoDB 按几何形状搜索 ](/数据库/mongodb/position/geometry.md)
+    - MongoDB高级专题
+      - [1.MongoDB 创建索引](/数据库/mongodb/senior/index.md)
+      - [2.MongoDB查询性能分析](/数据库/mongodb/senior/performance.md)
 - 消息队列
   - [初识消息队列](/消息队列/初识消息队列.md)
   - RabbitMQ教程
