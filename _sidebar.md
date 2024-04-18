@@ -326,6 +326,7 @@
     - [iperf](/linux/cli/iperf.md)
   - 常用工具
     - [ad](/linux/tools/ab.md)
+    - [supervisor](/linux/tools/supervisor.md)
   - Git
     - [Git实践](/linux/git/git实践.md)
   - GitLab
