@@ -134,6 +134,7 @@
     - Go 知识归纳
       - [新手容易踩的50个坑](/编程语言/golang/go知识归纳/新手容易踩的坑.md)
       - [gc垃圾回收机机制](/编程语言/golang/go知识归纳/gc垃圾回收.md)
+      - [context包详解](/编程语言/golang/go知识归纳/context包详解.md)
     - Go 标准库
       - [第1章 输入和输出](/编程语言/golang/standard_library/chapter01/01.0.md)
         - [1.1 io — 基本的 IO 接口](/编程语言/golang/standard_library/chapter01/01.1.md)
