@@ -9,7 +9,7 @@
 ## 准备测试数据
 往coll集合插入一批文档数据。
 
-```terminal
+```go
 docs := []interface{}{
     bson.D{
         {"item", "journal"},
@@ -67,7 +67,7 @@ result, err := coll.InsertMany(context.Background(), docs)
 ```
 
 ## 查询所有文档
-```terminal
+```go
 cursor, err := coll.Find(
     context.Background(),
     bson.D{}, // 设置空的查询条件
@@ -77,7 +77,7 @@ cursor, err := coll.Find(
 ## 等值查询条件
 
 类似SQL的等值匹配
-```terminal
+```go
 cursor, err := coll.Find(
     context.Background(),
     bson.D{{"status", "D"}},   // 等价条件：status = D
@@ -87,7 +87,7 @@ cursor, err := coll.Find(
 ## in查询操作符
 
 类似SQL的In查询
-```terminal
+```go
 cursor, err := coll.Find(
     context.Background(),
     bson.D{{"status", bson.D{{"$in", bson.A{"A", "D"}}}}}) // 等价条件： status in ('A', 'D')
@@ -96,7 +96,7 @@ cursor, err := coll.Find(
 ## and查询条件
 
 类似SQL的and逻辑表达式。
-```terminal
+```go
 cursor, err := coll.Find(
     context.Background(),
     bson.D{ // 等价条件: status='A' and qty < 30 
@@ -108,7 +108,7 @@ cursor, err := coll.Find(
 ## or查询条件
 
 类似SQL的or逻辑表达式
-```terminal
+```go
 cursor, err := coll.Find(
     context.Background(),
     bson.D{ // 等价条件：status = "A" OR qty < 30
@@ -121,7 +121,7 @@ cursor, err := coll.Find(
 ```
 
 ## 复合查询例子
-```terminal
+```go
 cursor, err := coll.Find(
     context.Background(),
     bson.D{ // 等价条件: status = "A" AND ( qty < 30 OR item LIKE "p%")
@@ -135,7 +135,7 @@ cursor, err := coll.Find(
 
 ## 遍历查询结果
 ### 例子1
-```terminal
+```go
 // 查询name=Bob的文档
 cursor, err := coll.Find(context.TODO(), bson.D{{"name", "Bob"}}, opts)
 if err != nil {
@@ -157,7 +157,7 @@ for _, result := range results {
 说明：例子使用bson.M类型保存文档数据，你可以自定义一个struct类型，只要字段跟文档匹配上就行。
 
 ### 例子2：
-```terminal
+```go
 // 定义一个struct类型的变量，用于保存查询结果
 var result struct {
     Value float64

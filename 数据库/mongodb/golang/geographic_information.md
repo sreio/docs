@@ -10,7 +10,7 @@
 ## 准备测试数据
 
 往coll集合写入一些包含地理坐标的数据，location字段存储了店铺的经纬度坐标地址。
-```terminal
+```go
 docs := []interface{}{
     bson.D{
         {"title", "海南白切鸡"},
@@ -56,7 +56,7 @@ result, err := coll.InsertMany(context.Background(), docs)
 使用$near操作符实现按距离查询。
 
 假如coll集合保存了店铺数据，location字段保存每一个店铺的坐标，下面查询距离我最近的店铺（最小距离1000米，最大距离5000米）。
-```terminal
+```go
 cursor, err := coll.Find(
     context.Background(),
     bson.D{{"location", bson.D{

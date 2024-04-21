@@ -8,7 +8,7 @@
 ## 准备测试数据
 
 往coll集合插入一批数据
-```terminal
+```go
 docs := []interface{}{
     bson.D{
         {"item", "canvas"},
@@ -116,7 +116,7 @@ result, err := coll.InsertMany(context.Background(), docs)
 ```
 
 ##  更新一个文档
-```terminal
+```go
 result, err := coll.UpdateOne(
     context.Background(), // 获取上下文参数
     bson.D{ // 设置查询条件， 查询item=paper的文档
@@ -140,7 +140,7 @@ result, err := coll.UpdateOne(
 ## 批量更新文档
 
 跟UpdateOne函数的区别是，UpdateMany跟匹配条件，批量更新匹配的文档内容。
-```terminal
+```go
 result, err := coll.UpdateMany(
     context.Background(),
     bson.D{ // 设置查询条件, qty > 50
@@ -165,7 +165,7 @@ result, err := coll.UpdateMany(
 
 ?>提示：替换文档指的是整体替换，不是局部更新文档的某些字段值。
 
-```terminal
+```go
 result, err := coll.ReplaceOne(
     context.Background(),
     bson.D{ // 设置查询条件, item=paper

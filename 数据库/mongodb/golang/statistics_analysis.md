@@ -37,7 +37,7 @@ select sum(amount) as total from orders
 ```
 
 下面是Golang的写法
-```terminal
+```go
 package main
 
 import (

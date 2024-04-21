@@ -13,7 +13,7 @@ bson包
 bson.D类型，用于描述有序的键值数组，常用于表达MongoDB查询表达式和JSON数据。
 
 定义:
-```terminal
+```go
 // 键值数组
 type D [] E
 
@@ -25,7 +25,7 @@ type E struct {
 ```
 
 查询表达式例子：
-```terminal
+```go
     bson.D{{"qty", bson.D{{"$lt", 30}}}}
 ```
 
@@ -35,7 +35,7 @@ type E struct {
 ```
 
 文档数据例子:
-```terminal
+```go
 bson.D{
         {"item", "journal"},
         {"qty", 25},
@@ -66,12 +66,12 @@ bson.D{
 bson.A用于定义JSON数组。
 
 JSON数组定义如下
-```json
+```go
     type A []interface{}
 
 ```
 例子1:
-```terminal
+```go
     bson.A{"bar", "world", 3.14159, bson.D{{"qux", 12345}}}
 ```
 
@@ -81,7 +81,7 @@ JSON数组定义如下
 ```
 
 例子2：
-```terminal
+```go
     bson.A{"A", "D"}
 ```
 
@@ -94,12 +94,12 @@ JSON数组定义如下
 bson.M用于描述无序的键值对, 跟bson.D的区别是，是否在乎KEY的存储顺序
 
 定义:
-```terminal
+```go
     type M map[string]interface{}
 ```
 
 例子：
-```terminal
+```go
     bson.M{"foo": "bar", "hello": "world", "pi": 3.14159}
 ```
 

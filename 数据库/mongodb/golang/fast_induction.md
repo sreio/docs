@@ -17,7 +17,7 @@
 ```
 
 ## 连接MongoDB
-```terminal
+```go
 import (
     "go.mongodb.org/mongo-driver/mongo"
     "go.mongodb.org/mongo-driver/mongo/options"
@@ -35,7 +35,7 @@ client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 ```
 
 Connect函数不会阻塞协程，也就是说调用Connect方法之后，直接操作MongoDB可能会因为MongoDB还没连接成功而报错，可以使用Ping方法检测下MongoDB是否连接成功。
-```terminal
+```go
 // PIng下MongoDB，如果连接成功不会返回错误
 err = client.Ping(ctx, readpref.Primary())
 ```
@@ -61,7 +61,7 @@ mongodb://root:123456@localhost:27017/admin
 ## 释放连接资源
 
 如果不使用连接了，需要手动释放连接资源
-```terminal
+```go
 defer func() {
     if err = client.Disconnect(ctx); err != nil {
         panic(err)
@@ -72,7 +72,7 @@ defer func() {
 ## 获取集合实例
 
 golang操作MongoDB首先得拿到集合实例，才可以对集合实例进行增删改查。
-```terminal
+```go
 // 通过Database设置数据库名，通过Collection设置集合名字
 collection := client.Database("testing").Collection("numbers")
 ```
@@ -82,7 +82,7 @@ collection := client.Database("testing").Collection("numbers")
 ## 插入文档
 
 通过InsertOne函数插入数据。
-```terminal
+```go
 // 上下文对象，常用用于设置请求超时时间，也可以共用前面创建的上下文对象，不必重新定义。
 ctx, cancel = context.WithTimeout(context.Background(), 5*time.Second)
 defer cancel()
@@ -95,7 +95,7 @@ id := res.InsertedID
 ```
 
 需要导入下面包
-```terminal
+```go
 import (
     "go.mongodb.org/mongo-driver/bson"
     "go.mongodb.org/mongo-driver/mongo"
@@ -106,7 +106,7 @@ import (
 ?>提示：Golang 使用bson包中定义的数据结构表示JSON文档，后面的章节会详细介绍Golang的MongoDB数据存储结构的表达方式。
 
 ## 完整的例子
-```terminal
+```go
 package main
 import (
     "context"

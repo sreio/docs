@@ -4,7 +4,7 @@
 <a href='/#/编程语言/golang/MongoDB/fast_induction.md'>Golang MongoDB快速入门</a>
 
 ## 插入一行文档
-```terminal
+```go
 result, err := collection.InsertOne(
     context.Background(),  // 上下文参数
     bson.D{   // 使用bson.D定义一个JSON文档
@@ -20,7 +20,7 @@ result, err := collection.InsertOne(
 ```
 
 // 获取文档生成的唯一id
-```terminal
+```go
 id := result.InsertedID
 ```
 
@@ -41,7 +41,7 @@ id := result.InsertedID
 ```
 
 ## 查询刚插入的文档
-```terminal
+```go
 cursor, err := collection.Find(
     context.Background(),
     bson.D{{"item", "canvas"}},  // 等价表达式: {"item": "canvas"}
@@ -49,7 +49,7 @@ cursor, err := collection.Find(
 ```
 
 ## 批量插入
-```terminal
+```go
 result, err := collection.InsertMany(
     context.Background(),
     []interface{}{   // 传入一个文档数组， 插入三个文档数据
@@ -87,7 +87,7 @@ result, err := collection.InsertMany(
 ```
 
 ## 查询全部文档
-```terminal
+```go
 cursor, err := collection.Find(
     context.Background(),
     bson.D{}, // 传入空的查询条件
