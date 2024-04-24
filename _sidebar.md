@@ -32,6 +32,7 @@
         - [迭代器模式](/编程语言/php/PHP设计模式/行为型模型/迭代器模式.md)
         - [策略模式](/编程语言/php/PHP设计模式/行为型模型/策略模式.md)
         - [观察者模式](/编程语言/php/PHP设计模式/行为型模型/观察者模式.md)
+    - [laravel-生命周期](/编程语言/php/laravel.md) 
     - [穿透Laravel](/编程语言/php/穿透laravel/README.md)
       - [第一章：基础环境搭建](/编程语言/php/穿透laravel/01第一章：基础环境搭建/README.md)
       - [第二章：核心代码结构分析](/编程语言/php/穿透laravel/02第二章：核心代码结构分析/README.md)

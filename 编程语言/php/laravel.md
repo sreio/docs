@@ -6,3 +6,6 @@
 - [在线阅读地址](http://www.idocloud.net/pttl/index.html)
 - [Github仓库地址](https://github.com/youngtrix/pierce_through_the_laravel)
 - [Github Fork 仓库地址](https://github.com/sreio/pierce_through_the_laravel)
+
+
+![img](./img/laravel10-生命周期.png)
