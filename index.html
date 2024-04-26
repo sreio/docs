@@ -33,23 +33,13 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+  <!--edit  -->
+  <script src="//cdn.jsdelivr.net/npm/docsify-edit-on-github"></script>
 
 </head>
 
 <body>
   <div id="app"></div>
-  <script>
-    window.$docsify = {
-      // ...
-      tabs: {
-        persist: true, // default
-        sync: true, // default
-        theme: 'classic', // default
-        tabComments: true, // default
-        tabHeadings: true // default
-      }
-    };
-  </script>
 
   <script>
     window.$docsify = {
@@ -107,7 +97,18 @@
         position: "top",
         color: "var(--theme-color,#42b983)",
         height: "3px",
-      }
+      },
+      tabs: {
+        persist: true, // default
+        sync: true, // default
+        theme: 'classic', // default
+        tabComments: true, // default
+        tabHeadings: true // default
+      },
+      plugins: [
+        EditOnGithubPlugin.create('https://github.com/sreio/docs/tree/main/',null,"Edit this Page on GitHub")
+      ],
+
     }
   </script>
   <!-- Docsify v4 -->
