@@ -268,6 +268,17 @@
       - [1、一条SQL查询语句是如何执行的？](/数据库/mysql/Mysql45讲/1_sql_select.md)
       - [2、一条SQL更新语句是如何执行的？](/数据库/mysql/Mysql45讲/2_sql_update.md)
       - [3、事务隔离：为什么你改了我还看不见？](/数据库/mysql/Mysql45讲/3_sql_transaction.md)
+  - Redis
+    - Redis数据结构
+      - [数据结构](/数据库/redis/数据结构/README.md)
+      - [SDS](/数据库/redis/数据结构/sds.md)
+      - [链表](/数据库/redis/数据结构/链表.md)
+      - [压缩列表](/数据库/redis/数据结构/压缩列表.md)
+      - [哈希表](/数据库/redis/数据结构/哈希表.md)
+      - [整数集合](/数据库/redis/数据结构/整数集合.md)
+      - [跳表](/数据库/redis/数据结构/跳表.md)
+      - [quicklist](/数据库/redis/数据结构/quicklist.md)
+      - [listpack](/数据库/redis/数据结构/listpack.md)
   - [ELK](/数据库/ELK/README.md)
     - Elasticsearch
       - [初识es](/数据库/ELK/ElasticSearch/readme.md)
