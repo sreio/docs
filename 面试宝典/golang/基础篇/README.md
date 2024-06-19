@@ -242,23 +242,6 @@ func main() {
 
 # 1.7 什么叫字面量和组合字面量？
 
-说出来不怕大家笑话，在去年年初我刚开始学习 Go 基础的时候，有一个词困扰了我好久，这个词就是 **字面量**。
-
-之所以会让我理解困难，是因为在 Go 之前，我都是写 Python 的，而且写了很多年，在 Python 中万物皆对象，不管一个字面量）有没有变量名来承接，在使用上没有任何区别的，因此在学 Go 之前，我其实都不知道有字面量这么个概念。
-
-```python
->>> {"name": "iswbm"}.get("name")  # 使用字面量
-'iswbm'
->>>
->>> profile={"name": "iswbm"}   # 使用变量名
->>> profile.get("name")
-'iswbm'
-```
-
-那么字面量到底是啥东西？怎么那么多的基础教程里反复会提及，却好像没什么人把这个名词的概念解释一下呢？难道是因为这是常识？尴尬。。
-
-![](http://image.iswbm.com/20211008234746.png)
-
 相信正在看这篇文章的你，可能也会有此疑问，今天我就梳理一下，我理解中的 **字面量**，是什么意思？它与普通变量有什么区别？
 
 ## 1. 什么是字面量？
@@ -376,7 +359,7 @@ func main() {
 
 常规方式这样定义是逐一字段赋值，这样就比较繁琐。
 
-```golang
+```go
 type Profile struct {
 	Name string
 	Age int
@@ -396,7 +379,7 @@ func main() {
 
 **组合字面量方式**
 
-```golang
+```go
 type Profile struct {
 	Name string
 	Age int
@@ -419,7 +402,7 @@ func main() {
 
 在下面的代码中，我们在第1行定义了一个8个元素大小的字符串数组。然后一个一个的给元素赋值。即数组变量的定义和初始化是分开的。
 
-```golang
+```go
 var planets [8]string
 
 planets[0] = "Mercury" //水星
@@ -439,7 +422,7 @@ balls := [4]string{"basketball", "football", "Volleyball", "Tennis"}
 
 **常规方式**
 
-```golang
+```go
 // 第一种
 var s []string //定义切片变量s，s为默认零值nil
 s = append(s, "hat", "shirt") //往s中增加元素，len(s):2,cap(s):2
@@ -452,7 +435,7 @@ s := make([]string, 0, 10) //定义s，s的默认值不为零值
 
 由上面的常规方式可知，首先都是需要先定义切片，然后再往切片中添加元素。接下来我们看下组合字面量方式。
 
-```golang
+```go
 s := []string{"hat", "shirt"} //定义和初始化一步完成，自动计算切片的容量和长度
 // or
 var s = []string{"hat", "shirt"}
@@ -462,7 +445,7 @@ var s = []string{"hat", "shirt"}
 
 **常规方式**
 
-```golang
+```go
 //通过make函数初始化
 m := make(map[string]int, 10)
 m["english"] = 99
@@ -471,7 +454,7 @@ m["math"] = 98
 
 **组合字面量方式**
 
-```golang
+```go
 m := map[string]int {
 	"english": 99,
 	"math": 98,
