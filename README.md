@@ -37,5 +37,5 @@ func main() {
 
 ```
 
-<codapi-snippet sandbox="go" editor="basic">
-</codapi-snippet>
+<codapi-snippet sandbox="go" editor="basic"></codapi-snippet>
+<!-- 使用示例：https://github.com/nalgeon/codapi-js/blob/main/docs/docsify.md -->
