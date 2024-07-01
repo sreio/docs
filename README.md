@@ -21,3 +21,21 @@ docsify serve .
 - [nodejs Download](https://nodejs.org/en/download/current)
 - [docsify](https://docsify.js.org/#/zh-cn/)
 - [markdown](https://markdown.com.cn/)
+
+
+```go
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    fmt.Printf("Hello, it's %s time.", time.Now().In(time.FixedZone("CST", 8*3600)).Format(time.DateTime))
+}
+
+```
+
+<codapi-snippet sandbox="go" editor="basic">
+</codapi-snippet>
