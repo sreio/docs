@@ -204,6 +204,7 @@ Kubernetes自v1.24移除了对docker-shim的支持，而Docker Engine默认又�
 
 cri-dockerd项目提供了安装包
 
+![1](./img/2-1.png)
 ![](https://img2023.cnblogs.com/blog/2908207/202212/2908207-20221209004008256-1907162972.png)
 
 
@@ -384,7 +385,7 @@ k8s-node2    NotReady   <none>                 63s     v1.23.3
 
 > ***重点***: `calico`  和 `flannel` 二选一即可， 前者功能更加完善且复杂
 
-# 镜像替换地址：https://docker.aityp.com/
+!> ***镜像替换地址***：https://docker.aityp.com/
 
 ```bash
 wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
@@ -475,7 +476,7 @@ kubectl describe nodes
 
 
 
-###  4. 测试示例
+##  4. 测试示例
 
 - nginx-deployment.yml
 
