@@ -397,6 +397,9 @@
   - [如何选择开源协议?](/其他/如何选择开源协议.md)
   - [管理信息系统简称](/其他/管理信息系统简称.md)
 - Linux
+  - K8s
+    - [k8s简介](/linux/k8s/redame.md)
+    - [k8s安装](/linux/k8s/install.md)
   - [常见命令总结](/linux/cli/README.md)
     - [man](/linux/cli/man.md)
     - [top](/linux/cli/top.md)
