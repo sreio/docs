@@ -2,11 +2,11 @@
 
 首先准备3台机器，我这里是 `ubuntu20.04` 版本
 
-| hosts         | 节点     |
-| :------------ | -------- |
-| 192.168.124.3 | `master` |
-| 192.168.124.7 | `node1`  |
-| 192.168.124.9 | `node2`  |
+| hosts          | 节点     |
+| :------------- | -------- |
+| 192.168.124.4  | `master` |
+| 192.168.124.11 | `node1`  |
+| 192.168.124.12 | `node2`  |
 
 #### 1.1 安装基本命令工具
 
@@ -81,9 +81,9 @@ hostnamectl set-hostname k8s-node2
 
 ```bash
 cat << EOF >> /etc/hosts
-192.168.124.3 k8s-master
-192.168.124.7 k8s-node1
-192.168.124.9 k8s-node2
+192.168.124.4 k8s-master
+192.168.124.11 k8s-node1
+192.168.124.12 k8s-node2
 EOF
 ```
 
@@ -91,9 +91,17 @@ EOF
 
 #### 1.7 安装 `docker`
 
+```bash
+sudo sed -i "s@http://.*archive.ubuntu.com@http://mirrors.aliyun.com@g" /etc/apt/sources.list
+sudo sed -i "s@http://.*security.ubuntu.com@http://mirrors.aliyun.com@g" /etc/apt/sources.list
+sudo apt-get update
+```
+
+
+
 ```shell
 # 安装Docker Engine
-sudo apt install -y docker.io 
+sudo apt-get install -y docker.io 
 # 启动docker服务
 sudo service docker start 
 ```
@@ -123,11 +131,14 @@ docker version
 ```bash
 cat <<EOF | sudo tee /etc/docker/daemon.json
 {
-	"registry-mirrors": [
-		"https://zfwsle5k.mirror.aliyuncs.com"
-    ]
+	"registry-mirrors": ["https://zfwsle5k.mirror.aliyuncs.com"],
+    "exec-opts": ["native.cgroupdriver=systemd"]
 }
 EOF
+
+#"exec-opts": ["native.cgroupdriver=systemd"]为docker使用cgroup的方式，k8s使用方式也是systemd，两边要一致
+#重启docker
+systemctl restart docker
 ```
 
 
@@ -161,16 +172,16 @@ sysctl --system
 ```bash
 # master 节点
 ssh-keygen -t rsa
-ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.7
-ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.9
+ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.11
+ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.12
 # node1 节点
 ssh-keygen -t rsa
-ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.3
-ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.9
+ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.4
+ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.12
 # node2 节点
 ssh-keygen -t rsa
-ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.3
-ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.7
+ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.4
+ssh-copy-id -i /root/.ssh/id_rsa.pub root@192.168.124.11
 
 
 ## 可以在每台机器内测试连接其他两台
@@ -182,6 +193,50 @@ ssh k8s-node2
 
 
 ## 2. 安装 `k8s`
+
+#### 2.0 安装 `cri-dockerd` (所有节点)
+
+Kubernetes自v1.24移除了对docker-shim的支持，而Docker Engine默认又不支持CRI规范，因而二者将无法直接完成整合。
+
+为此，Mirantis和Docker联合创建了cri-dockerd项目，用于为Docker Engine提供一个能够支持到CRI规范的垫片，从而能够让Kubernetes基于CRI控制Docker 。
+
+项目地址：https://github.com/Mirantis/cri-dockerd
+
+cri-dockerd项目提供了安装包
+
+![](https://img2023.cnblogs.com/blog/2908207/202212/2908207-20221209004008256-1907162972.png)
+
+
+
+> Ubuntu有三个版本，分别是bionic、focal、jammy
+>
+> 分别代表不同的大版本
+>
+> - 22.04：jammy
+> - 20.04：focal
+> - 18.04：bionic
+> - 16.04：xenial
+> - 14.04：trusty
+
+
+
+这里我们是20.04版本，所以选择focal
+
+```bash
+wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.7/cri-dockerd_0.3.7.3-0.ubuntu-focal_amd64.deb
+# 安装
+dpkg -i ./cri-dockerd_0.3.7.3-0.ubuntu-focal_amd64.deb
+
+# 从国内 cri-dockerd 服务无法下载 k8s.gcr.io上面相关镜像,导致无法启动,所以需要修改cri-dockerd 使用国内镜像源
+# 修改配置文件，设置国内镜像源
+sed -ri 's@^(.*fd://).*$@\1 --pod-infra-container-image registry.aliyuncs.com/google_containers/pause@' /usr/lib/systemd/system/cri-docker.service
+#重启
+systemctl daemon-reload && systemctl restart cri-docker
+```
+
+
+
+
 
 #### 2.1 安装 `kubeadm`、`kubelet` 和 `kubectl`
 
@@ -203,7 +258,7 @@ sudo apt update
 
 ```bash
 sudo apt-get install -y kubeadm=1.23.3-00 kubelet=1.23.3-00 kubectl=1.23.3-00
-sudo apt install -y kubeadm=1.28.2-00 kubelet=1.28.2-00 kubectl=1.28.2-00
+sudo apt-get install -y kubeadm=1.28.2-00 kubelet=1.28.2-00 kubectl=1.28.2-00
 ```
 
 安装完成之后，可以用 `kubeadm version`、`kubectl version` 来验证版本是否正确。
@@ -229,12 +284,13 @@ sudo apt-mark showhold
 ```bash
 # master节点执行
 sudo kubeadm init \
-    --apiserver-advertise-address=192.168.124.3 \
-    --control-plane-endpoint=192.168.124.3 \
+    --apiserver-advertise-address=192.168.124.4 \
+    --control-plane-endpoint=192.168.124.4 \
+    --cri-socket unix:///run/cri-dockerd.sock \
     --image-repository registry.cn-hangzhou.aliyuncs.com/google_containers \
     --service-cidr=10.10.0.0/16 \
     --pod-network-cidr=10.244.0.0/16 \
-    --kubernetes-version=v1.23.3
+    --kubernetes-version=v1.28.2
 
 # --apiserver-advertise-address: 指定master服务发布的ip地址
 # --control-plane-endpoint: 可用于为所有控制平面节点设置共享端点，允许IP地址和可以映射到IP地址的DNS名称，例如 192.168.77.100 master
@@ -269,11 +325,27 @@ You should now deploy a pod network to the cluster.
 # 使用下列选项之一运行 "kubectl apply -f [podnetwork].yaml
 Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
   https://kubernetes.io/docs/concepts/cluster-administration/addons/
+ 
+# 现在，您可以在每个节点上复制证书授权和服务帐户密钥，然后以根用户身份运行
+# 和服务帐户密钥，然后以根用户身份运行以下程序，即可加入任意数量的控制平面节点：
+ You can now join any number of control-plane nodes by copying certificate authorities
+and service account keys on each node and then running the following as root:
+
+  kubeadm join 192.168.124.4:6443 --token 0ktglw.mmp2aj5xq5jr495r \
+	--discovery-token-ca-cert-hash sha256:250ff1aed217758deb69fe8215db29cfdc52fccd03ec199781519961dc2bbb80 \
+	--control-plane 
+
+# 然后，以根用户身份在每个工作节点上运行以下程序，即可加入任意数量的工作节点：
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 192.168.124.4:6443 --token 0ktglw.mmp2aj5xq5jr495r \
+	--discovery-token-ca-cert-hash sha256:250ff1aed217758deb69fe8215db29cfdc52fccd03ec199781519961dc2bbb80 
+  
   
 # 然后，您可以通过以 root 身份在每个节点上运行以下命令来加入任意数量的工作器节点：
 Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join 192.168.124.3:6443 --token kv8ghf.jtfedu88hpbjdr4a \
+kubeadm join 192.168.124.4:6443 --token kv8ghf.jtfedu88hpbjdr4a \
 	--discovery-token-ca-cert-hash sha256:425431e5bf88bfdff8f3fcc5c0dd268b2dd57aca3dbe8f08dd390fe3501186d3
 ## -------------------------------------------------------------------- end
 
@@ -282,19 +354,19 @@ kubeadm join 192.168.124.3:6443 --token kv8ghf.jtfedu88hpbjdr4a \
   sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
   sudo chown $(id -u):$(id -g) $HOME/.kube/config
   
-# 如果你是root用户请运行(我这里是root用户，所以我执行这个)
+# 如果你是root用户请运行
 export KUBECONFIG=/etc/kubernetes/admin.conf
 
 # node节点分别执行
-scp root@192.168.124.3:/etc/kubernetes/admin.conf /etc/kubernetes/
+scp root@192.168.124.4:/etc/kubernetes/admin.conf /etc/kubernetes/
 echo "export KUBECONFIG=/etc/kubernetes/admin.conf" >> ~/.bash_profile
 source ~/.bash_profile
 
 
 # 然后将node节点加入到master中(在两个node节点中分别运行)
 ## 这段kubeamd join命令的token只有24h，24h就过期，需要执行kubeadm token create --print-join-command 重新生成。
-kubeadm join 192.168.124.3:6443 --token kv8ghf.jtfedu88hpbjdr4a \
-	--discovery-token-ca-cert-hash sha256:425431e5bf88bfdff8f3fcc5c0dd268b2dd57aca3dbe8f08dd390fe3501186d3
+## 初始化的时候kubeadm init有添加cri-socket 则需要在后边加--cri-socket unix:///run/cri-dockerd.sock
+kubeadm join 192.168.124.4:6443 --token 0ktglw.mmp2aj5xq5jr495r --discovery-token-ca-cert-hash sha256:250ff1aed217758deb69fe8215db29cfdc52fccd03ec199781519961dc2bbb80 --cri-socket unix:///run/cri-dockerd.sock
 	
 ```
 
@@ -307,6 +379,27 @@ k8s-master   NotReady   control-plane,master   7m58s   v1.23.3
 k8s-node1    NotReady   <none>                 63s     v1.23.3
 k8s-node2    NotReady   <none>                 63s     v1.23.3
 ```
+
+
+
+> ***重点***: `calico`  和 `flannel` 二选一即可， 前者功能更加完善且复杂
+
+# 镜像替换地址：https://docker.aityp.com/
+
+```bash
+wget https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+# 可以提前拉取镜像
+docker pull swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/flannel/flannel-cni-plugin:v1.5.1-flannel1
+docker pull swr.cn-north-4.myhuaweicloud.com/ddn-k8s/docker.io/flannel/flannel:v0.25.4
+
+# 将kube-flannel.yml里面的镜像地址也一并替换
+
+# master节点
+kubectl apply -f kube-flannel.yml
+```
+
+
 
 可以在 `Calico` 的网站（https://www.tigera.io/project-calico/）上找到它的安装方式，需要注意 `Calico` 版本支持适配的 `kubernets` 版本。
 
@@ -382,25 +475,108 @@ kubectl describe nodes
 
 
 
-####  4. 测试示例
+###  4. 测试示例
 
-在k8s中创建一个pod，验证是否正常运行：
+- nginx-deployment.yml
 
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: ng3
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
 ```
-#创建一个httpd服务测试
-kubectl create deployment httpd --image=httpd
-#暴露服务,端口就写80,如果你写其他的可能防火墙拦截了
-kubectl expose deployment httpd --port=80 --type=NodePort
-#查看pod是否是Running状态,查看service/httpd的端口
-kubectl get pod,svc
-NAME                         READY   STATUS    RESTARTS   AGE
-pod/httpd-757fb56c8d-w42l5   1/1     Running   0          39s
-NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
-service/httpd        NodePort    10.109.29.1   <none>        80:32569/TCP   42s			#外部端口32569
-service/kubernetes   ClusterIP   10.96.0.1     <none>        443/TCP        3h22m
 
-#网页测试访问，使用master节点的IP或者node节点的IP都可以访问，端口就是32569
-http://192.168.124.3:32569/
-It works!							#成功了
+- nginx-service.yml
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  namespace: ng3
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        ports:
+        - containerPort: 80
+
+root@k8s-node1:~/data/ng-3# cat nginx-service.yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-service
+  namespace: ng3
+spec:
+  selector:
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30080  # 指定固定的 NodePort
+  type: NodePort
+```
+
+
+
+#### 启动服务
+
+```bash
+# 我们上面使用了命名空间 所以需要提前创建好一个
+kubectl create namespace ng3
+
+# 启动服务
+kubectl apply -f nginx-deployment.yml
+kubectl apply -f nginx-service.yml
+```
+
+
+
+ #### 查看服务状态 kubectl get svc,pod,deploy  -n ng3
+
+```bash
+kubectl get svc,pod,deploy  -n ng3
+NAME                    TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+service/nginx-service   NodePort   10.10.95.189   <none>        80:30080/TCP   20m
+
+NAME                                   READY   STATUS    RESTARTS   AGE
+pod/nginx-deployment-f7f5c78c5-hw5t6   1/1     Running   0          20m
+pod/nginx-deployment-f7f5c78c5-nhjgm   1/1     Running   0          20m
+pod/nginx-deployment-f7f5c78c5-v8v58   1/1     Running   0          20m
+
+NAME                               READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/nginx-deployment   3/3     3            3           20m
+
+# 访问 这几个服务都是正常的说明成功
+http://192.168.124.4:30080/
+http://192.168.124.11:30080/
+http://192.168.124.12:30080/
+
 ```
 
