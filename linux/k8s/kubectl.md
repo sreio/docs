@@ -1,3 +1,9 @@
+> 后续根据以下资料整合
+- https://www.cnblogs.com/zhanglianghhh/p/13467038.html
+- https://www.cnblogs.com/jasonboren/p/11483405.html
+
+
+
 ## 资源查看命令
 这些命令用于查看 Kubernetes 集群中的资源状态和信息：
 
