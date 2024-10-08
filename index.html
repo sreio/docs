@@ -57,13 +57,20 @@
       subMaxLevel: 2,
       // 折叠目录
       sidebarDisplayLevel: 1,
-      search: 'auto', // 默认值
       // 切换页面后自动跳转到页面顶部
       auto2top: true,
       // 避免递归查找_sidebar.md
       alias: {
         '/.*/_sidebar.md': '/_sidebar.md'
       },
+      search: {
+        paths: 'auto',
+        placeholder: '🔍 搜索',
+        noData: '😒 找不到结果',
+        // Headline depth, 1 - 6
+        depth: 6,
+        maxAge: 86400000, // 过期时间，单位毫秒，默认一天
+      },//添加搜索框
       // 分页
       pagination: {
         previousText: '上一章节',
@@ -115,10 +122,10 @@
   </script>
   <!-- Docsify v4 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify@4"></script>
+  <!-- search -->
+  <script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/search.min.js"></script>
   <!-- 复制 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
-  <!-- search -->
-  <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
   <!-- prism -->
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-php.min.js"></script>
