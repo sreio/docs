@@ -1,4 +1,3 @@
-- [🏚️首页](/README.md)
 - 面试宝典
   - [PHP](/面试宝典/php/README.md)
   - [Golang](/面试宝典/golang/README.md)
