@@ -35,6 +35,15 @@
       s.parentNode.insertBefore(hm, s);
     })();
   </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7QZJBT8P9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-D7QZJBT8P9');
+  </script>
   <!--edit  -->
   <script src="https://cdn.jsdelivr.net/gh/sreio/docsify-edit-on-github/index.js"></script>
 
@@ -184,6 +193,12 @@
   <!-- <script src="/js/docsify-pdf-embed.js"></script> -->
   <!-- 进度条 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
+
+  <script>
+    if (typeof navigator.serviceWorker !== 'undefined') {
+      navigator.serviceWorker.register('ws.js')
+    }
+  </script>
 
 </body>
 
