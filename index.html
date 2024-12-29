@@ -143,6 +143,25 @@
       plugins: [
         EditOnGithubPlugin.create('https://github.com/sreio/docs/tree/main/',null,"✍️ Edit this Page on GitHub")
       ],
+      // docsify ads 配置广告
+      ads: [
+        {
+          img: 'https://dscache.tencent-cloud.cn/upload//rhino-design-1280x720-7314fbb69b7e60f1314c1f880b8b8a8198941be4.png',
+          href: 'https://curl.qcloud.com/0EXWka8e'
+        },
+        {
+          img: 'https://dscache.tencent-cloud.cn/upload//345_200-013e419e2b86ff48a531fabce2694bd3bb27f844.png',
+          href: 'https://curl.qcloud.com/kL8wUrVt',
+        },
+        {
+          img: 'https://dn-lego-static.qbox.me/cps/1638355965-480x300.jpg',
+          href: 'https://s.qiniu.com/eYname'
+        },
+        {
+          img: 'https://dn-lego-static.qbox.me/cps/1638268412-480x300.jpg',
+          href: 'https://s.qiniu.com/eYname'
+        },
+    ]
     }
   </script>
   <!-- Docsify v4 -->
@@ -220,6 +239,10 @@
   <!-- <script src="/js/docsify-pdf-embed.js"></script> -->
   <!-- 进度条 -->
   <script src="https://cdn.jsdelivr.net/npm/docsify-progress@latest/dist/progress.min.js"></script>
+
+
+  <!-- body -->
+  <script src="https://unpkg.com/docsify-ads@1.0.4/dist/docsify-ads.min.js"></script>
 
   <script>
     if (typeof navigator.serviceWorker !== 'undefined') {
