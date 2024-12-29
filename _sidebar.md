@@ -395,6 +395,7 @@
     - [jwt](/其他/用户鉴权/jwt.md)
   - [如何选择开源协议?](/其他/如何选择开源协议.md)
   - [管理信息系统简称](/其他/管理信息系统简称.md)
+  - [从零认识广告体系](/其他/从零认识广告体系.md)
 - Linux
   - K8s
     - [k8s简介](/linux/k8s/redame.md)
@@ -418,6 +419,7 @@
     - [GitLab-CI/CD](/linux/gitlab/git_ci_cd.md)
   - Nginx
     - [nginx.conf](/linux/Nginx/nginx.md)  
+    - [Ngxin 优化](/linux/Nginx/nginx_youhua.md)
   - Docker
     - Docker — 从入门到实践
       - [Docker 简介](/linux/docker/Docker-从入门到实践/start.md)
