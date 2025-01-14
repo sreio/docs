@@ -19,7 +19,7 @@ sudo apt install ncdu
 ```
 
 #### **CentOS/RHEL 系列**  
-如果系统启用了 EPEL 源：
+> 如果系统启用了 EPEL 源：
 ```terminal
 sudo yum install epel-release
 sudo yum install ncdu
@@ -36,28 +36,25 @@ sudo pacman -S ncdu
 ```
 
 #### **macOS**（通过 Homebrew 安装）  
-确保已安装 Homebrew：
+> 确保已安装 Homebrew：
 ```terminal
 brew install ncdu
 ```
 
 #### **Windows**  
-需要通过 WSL（Windows Subsystem for Linux）或 Cygwin 等工具使用 Linux 环境，然后按照 Linux 的安装方法操作。
+> 需要通过 WSL（Windows Subsystem for Linux）或 Cygwin 等工具使用 Linux 环境，然后按照 Linux 的安装方法操作。
 
 #### **源码安装**（适用于所有平台）  
-1. 下载源码：
-   ```terminal
-   wget https://dev.yorhel.nl/download/ncdu-<version>.tar.gz
-   ```
-2. 解压并安装：
-   ```terminal
-   tar -xvzf ncdu-<version>.tar.gz
-   cd ncdu-<version>
-   ./configure
-   make
-   sudo make install
-   ```
+```terminal
+wget https://dev.yorhel.nl/download/ncdu-<version>.tar.gz
+tar -xvzf ncdu-<version>.tar.gz
+cd ncdu-<version>
+./configure
+make
+sudo make install
+```
 <!-- tabs:end -->
+
 
 ---
 
