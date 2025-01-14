@@ -413,6 +413,7 @@
   - 常用工具
     - [ad](/linux/tools/ab.md)
     - [supervisor](/linux/tools/supervisor.md)
+    - [ncdu](/linux/tools/ncdu.md)
   - Git
     - [Git实践](/linux/git/git实践.md)
   - GitLab
