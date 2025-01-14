@@ -11,6 +11,8 @@
 
 ### 2. 在各平台系统的安装方式  
 
+<!-- tabs:start -->
+
 #### **Debian/Ubuntu 系列**  
 ```bash
 sudo apt update
@@ -58,6 +60,8 @@ brew install ncdu
    ```
 
 ---
+
+<!-- tabs:end -->
 
 ### 3. 使用示例  
 
