@@ -1,7 +1,7 @@
-### 1. 简介  
+## 1. 简介  
 `ncdu`（NCurses Disk Usage）是一个快速且功能强大的磁盘使用分析工具，专为命令行环境设计。它基于`ncurses`库开发，可用来检查磁盘空间占用情况，类似于`du`命令，但提供了交互式界面，可以直观地浏览和管理文件/目录的大小。
 
-#### 主要特点：
+### 主要特点：
 - 快速扫描目录并显示其占用大小。
 - 支持通过键盘导航查看子目录的详细信息。
 - 提供删除文件或目录的功能。
@@ -9,36 +9,35 @@
 
 ---
 
-### 2. 在各平台系统的安装方式  
+## 2. 在各平台系统的安装方式  
 
 <!-- tabs:start -->
-
 #### **Debian/Ubuntu 系列**  
-```bash
+```terminal
 sudo apt update
 sudo apt install ncdu
 ```
 
 #### **CentOS/RHEL 系列**  
 如果系统启用了 EPEL 源：
-```bash
+```terminal
 sudo yum install epel-release
 sudo yum install ncdu
 ```
 
 #### **Fedora**  
-```bash
+```terminal
 sudo dnf install ncdu
 ```
 
 #### **Arch Linux/Manjaro**  
-```bash
+```terminal
 sudo pacman -S ncdu
 ```
 
 #### **macOS**（通过 Homebrew 安装）  
 确保已安装 Homebrew：
-```bash
+```terminal
 brew install ncdu
 ```
 
@@ -47,21 +46,22 @@ brew install ncdu
 
 #### **源码安装**（适用于所有平台）  
 1. 下载源码：
-   ```bash
+   ```terminal
    wget https://dev.yorhel.nl/download/ncdu-<version>.tar.gz
    ```
 2. 解压并安装：
-   ```bash
+   ```terminal
    tar -xvzf ncdu-<version>.tar.gz
    cd ncdu-<version>
    ./configure
    make
    sudo make install
    ```
+<!-- tabs:end -->
 
 ---
 
-<!-- tabs:end -->
+
 
 ### 3. 使用示例  
 
