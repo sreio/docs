@@ -12,13 +12,13 @@
 ## 2. 在各平台系统的安装方式  
 
 <!-- tabs:start -->
-#### **Debian/Ubuntu 系列**  
+#### **Debian/Ubuntu**  
 ```terminal
 sudo apt update
 sudo apt install ncdu
 ```
 
-#### **CentOS/RHEL 系列**  
+#### **CentOS/RHEL**  
 > 如果系统启用了 EPEL 源：
 ```terminal
 sudo yum install epel-release
@@ -35,7 +35,7 @@ sudo dnf install ncdu
 sudo pacman -S ncdu
 ```
 
-#### **macOS**（通过 Homebrew 安装）  
+#### **macOS**  
 > 确保已安装 Homebrew：
 ```terminal
 brew install ncdu
@@ -44,7 +44,7 @@ brew install ncdu
 #### **Windows**  
 > 需要通过 WSL（Windows Subsystem for Linux）或 Cygwin 等工具使用 Linux 环境，然后按照 Linux 的安装方法操作。
 
-#### **源码安装**（适用于所有平台）  
+#### **源码安装（适用于所有平台）**  
 ```terminal
 wget https://dev.yorhel.nl/download/ncdu-<version>.tar.gz
 tar -xvzf ncdu-<version>.tar.gz
@@ -53,6 +53,7 @@ cd ncdu-<version>
 make
 sudo make install
 ```
+
 <!-- tabs:end -->
 
 
@@ -60,7 +61,7 @@ sudo make install
 
 
 
-### 3. 使用示例  
+## 3. 使用示例  
 
 #### **基本用法**  
 1. 扫描当前目录并显示交互式界面：
