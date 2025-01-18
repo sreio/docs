@@ -7,44 +7,50 @@
 - 提供删除文件或目录的功能。
 - 适合用于服务器和低资源环境。
 
----
+
 
 ## 2. 在各平台系统的安装方式  
 
 <!-- tabs:start -->
-#### **Debian/Ubuntu**  
+#### **ubuntu/debian**
 ```terminal
 sudo apt update
 sudo apt install ncdu
 ```
 
-#### **CentOS/RHEL**  
+#### **CentOS/RHEL**
+
 > 如果系统启用了 EPEL 源：
+
 ```terminal
 sudo yum install epel-release
-sudo yum install ncdu
+sudo yum install ncdu 
 ```
 
-#### **Fedora**  
+#### **Fedora**
 ```terminal
 sudo dnf install ncdu
 ```
 
-#### **Arch Linux/Manjaro**  
+#### **Arch Linux/Manjaro**
 ```terminal
 sudo pacman -S ncdu
 ```
 
-#### **macOS**  
+#### **macOS**
+
 > 确保已安装 Homebrew：
+
 ```terminal
 brew install ncdu
 ```
 
-#### **Windows**  
+#### **Windows**
+
 > 需要通过 WSL（Windows Subsystem for Linux）或 Cygwin 等工具使用 Linux 环境，然后按照 Linux 的安装方法操作。
 
-#### **源码安装（适用于所有平台）**  
+
+#### **源码安装（适用于所有平台）**
 ```terminal
 wget https://dev.yorhel.nl/download/ncdu-<version>.tar.gz
 tar -xvzf ncdu-<version>.tar.gz
@@ -55,10 +61,6 @@ sudo make install
 ```
 
 <!-- tabs:end -->
-
-
----
-
 
 
 ## 3. 使用示例  
