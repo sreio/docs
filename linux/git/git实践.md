@@ -131,5 +131,5 @@ git version 2.36.0
 
 ### rm
 
-`git rm -r --cahche <file/dir>` 删除临时文件缓存
+`git rm -r --cache <file/dir>` 删除临时文件缓存
 
