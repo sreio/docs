@@ -292,6 +292,8 @@
     - [etcd简介](/数据库/etcd/README.md)
     - [命令行操作](/数据库/etcd/命令行操作.md)
     - [go-etcd操作](/数据库/etcd/curd.md)
+  - clickhouse
+    - [单节点-二进制](/数据库/clickhouse/readme.md)  
   - [mongodb](/数据库/mongodb/README.md)
     - 概念&工具
       - [1.MongoDB 数据模型](/数据库/mongodb/concept/data.md)
